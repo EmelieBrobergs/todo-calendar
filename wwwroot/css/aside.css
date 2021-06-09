@@ -1,0 +1,24 @@
+aside {
+    height: 100%;
+    width: var(--aside-width);
+    margin-top: var(--header-height);
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: lightblue;
+    padding-top: 1.3rem;
+}
+
+.button {
+    background-color:transparent;
+    border: 0;
+    width: 100%;
+    /* max-width: 10rem; */
+    height: 2rem;
+}
+.button-box {
+    border: 0.1rem sandybrown solid;
+    background-color: snow;
+    overflow: hidden;
+}
