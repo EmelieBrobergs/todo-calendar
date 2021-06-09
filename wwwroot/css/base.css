@@ -1,3 +1,14 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+:root {
+    --aside-width: 15rem;
+    --header-height: 4rem;
+}
+
 /* Reusable classes */
 .flex {
     display: flex;
@@ -5,6 +16,10 @@
 
 .column {
     flex-direction: column;
+}
+
+.row {
+    flex-direction: row;
 }
 
 .grow {
@@ -21,4 +36,37 @@
 
 .align-center {
     align-items: center;
+}
+
+.padding8 {
+    padding: 8px;
+}
+
+.padding-right {
+    padding-right: 5px;
+}
+
+.margin8 {
+    margin: 8px;
+}
+
+
+
+/* dessa?*/
+
+.max-width {
+    max-width: 69rem;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.full-height {
+    height: 100%;
+}
+
+.full-size {
+    width: 100%;
+    height: 100%;
 }
