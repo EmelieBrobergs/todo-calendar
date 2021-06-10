@@ -6,7 +6,7 @@ aside {
     z-index: 1;
     top: 0;
     left: 0;
-    background: url("/img/Calendar-Blur.jpg") no-repeat left;
+    background: url("../img/Calendar-Blur.jpg") no-repeat left;
     padding-top: 1.3rem;
 }
 

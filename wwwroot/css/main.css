@@ -1,6 +1,6 @@
 main {
     padding-left: var(--aside-width);
-    background: url("/img/Calendar-photo.jpg") no-repeat center/ cover; 
+    background: url("../img/Calendar-photo.jpg") no-repeat center/ cover; 
     
 
 }
@@ -13,7 +13,7 @@ main {
 }
 
 .grid-item {
-    background: url("/img/Calendar-Blur.jpg") no-repeat center;
+    background: url("../img/Calendar-Blur.jpg") no-repeat center;
     text-align: start;
     padding-left: 0.5rem;
     font-size: large;
