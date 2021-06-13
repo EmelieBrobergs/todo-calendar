@@ -1,5 +1,7 @@
 header {
-    height: 4rem;
-    background: url("../img/Calendar-Blur.jpg") no-repeat left/ cover;
-    font-size: 1.5rem;
+    height: var(--header-height);
+    background-color: #a6e3e9;
+    border-radius: 0.5rem;
+    font-size: 3rem;
+    margin: 4rem;
 }
