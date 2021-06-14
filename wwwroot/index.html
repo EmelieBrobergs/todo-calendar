@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,35 +9,76 @@
     <link rel="stylesheet" href="./css/header.css">
     <link rel="stylesheet" href="./css/aside.css">
     <link rel="stylesheet" href="./css/main.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
 
+    <script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../node_modules/fomantic-ui-css/semantic.css">
+    <script src="../node_modules/fomantic-ui-css/semantic.js"></script>
+    <script src="./scripts/todo.js"></script>
+    <script src="./scripts/today.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+        integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
 
     <title>Calendar</title>
 </head>
+
 <body>
     <header class="flex row justify-center align-center">
         <h1>Kalender</h1>
     </header>
+        <!-- TODO: Information om Today -->
     <aside class="flex column align-center padding8">
+        <div class="welcome-container">
+            <div class="month-carousel ">
+                <button class="arrow-button">
+                    <i class="arrow left"></i>
+                </button>
+                <h2 id="month"></h2>
+                <button class="arrow-button">
+                    <i class="arrow right"></i>
+                </button>
+            </div>
+            <div class="day">
+                <h5 id="weekday"></h5>
+            </div>
+            <h5></h5>
+        </div>
 
         <div class="flex row align-center button-box">
-            <button class="button padding8">Borsta tänderna</button>
-            <i class="far fa-edit padding-right"></i>
-            <i class="far fa-trash-alt padding-right"></i>
+            <ul id="todoList">
+                <h5>Idag</h5>
+                <li>Plugga <span id="icon"></span></li>
+                <h5>21/6</h5>
+                <li>Borsta tänderna</li>
+            </ul>
         </div>
-        <!-- TODO: Information om Today -->
-        <section class="">
+    
 
-        </section>
-        <!-- TODO: Knappar för att lägga till Todo -->
-        <button class="button padding8">Lägg till TODO</button>
-        <!-- TODO: Knappar för att ta bort Todo -->
-        <button class="button padding8">Ta bort TODO</button>
+
+        <div id="abc">
+            <!-- Popup Div Starts Here -->
+            <div id="popupContact">
+                <!-- Form -->
+                <form action="#" id="form" method="post" name="form">
+                    <img id="close" src="./img/img3.png" onclick="div_hide()">
+                    <h2>Lägg till ToDo</h2>
+                    <hr>
+                    <input type="text" id="myInput" placeholder="Ange todo" />
+                    <div class="ui calendar" id="standard_calendar">
+                    </div>
+                    <a href="javascript:%20newElement()" id="submit">Lägg till</a>
+                </form>
+            </div>
+
+            <!-- Popup Div Ends Here -->
+        </div>
+        <!-- Display Popup Button -->
+        <button class="ui primary button" id="popup" onclick="div_show()">Lägg till ToDo</button>
     </aside>
+
     <main>
         <!-- TODO: Grid för rutnät till kalender ? -->
         <!-- TODO: Få till veckorader + datum + dagar -->
-       
+
         <div class="grid-container">
             <div class="grid-item weekday">Måndag</div>
             <div class="grid-item weekday">Tisdag</div>
@@ -45,7 +87,7 @@
             <div class="grid-item weekday">Fredag</div>
             <div class="grid-item weekday">Lördag</div>
             <div class="grid-item weekday">Söndag</div>
-        
+
             <div class="grid-item">1</div>
             <div class="grid-item">2</div>
             <div class="grid-item">3</div>
@@ -77,9 +119,10 @@
             <div class="grid-item">29</div>
             <div class="grid-item">30</div>
 
-          </div>
+        </div>
 
         <!-- TODO: Få in Todo-siffran -->
     </main>
 </body>
+
 </html>
