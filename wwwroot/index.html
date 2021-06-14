@@ -31,11 +31,11 @@
     <aside class="flex column align-center padding8">
         <div class="welcome-container">
             <div class="month-carousel ">
-                <button class="arrow-button">
+                <button class="arrow-button" onclick="prevMonth()">
                     <i class="arrow left"></i>
                 </button>
                 <h2 id="month"></h2>
-                <button class="arrow-button">
+                <button class="arrow-button" onclick="nextMonth()">
                     <i class="arrow right"></i>
                 </button>
             </div>
@@ -50,7 +50,6 @@
             <ul id="todoList">
                 <h5>Idag</h5>
                 <li>Plugga <span id="icon"></span></li>
-                <h5>21/6</h5>
                 <li>Borsta tänderna</li>
             </ul>
 
