@@ -17,13 +17,17 @@ main {
 .grid-container {
     font-size: large;
     display: grid;
+
     grid-template-columns: repeat(7, 1fr);
     padding: 4rem;
     padding-top: 0.5rem;
     grid-gap: 1rem;
-}
 
+    
+
+}
 .grid-item {
+
     background-color: #a6e3e9;
     border-radius: 0.5rem;
     text-align: start;
@@ -57,7 +61,4 @@ main {
 }
 
 
-/* div {
-    height: 100%;
-    width: 100%;
-} */
+
