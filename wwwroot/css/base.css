@@ -7,6 +7,8 @@
 :root {
     --aside-width: 20rem;
     --header-height: 4rem;
+    --universal-spacer: 1rem;
+    --grid-gap: 0.3rem;
 }
 
 /* Reusable classes */
@@ -38,21 +40,12 @@
     align-items: center;
 }
 
-.padding8 {
-    padding: 8px;
-}
-
 .padding-right {
     padding-right: 5px;
 }
 
-.margin8 {
-    margin: 8px;
-}
 
-
-
-/* dessa?*/
+/* dessa? TA bort om de ej anvönds */
 
 .max-width {
     max-width: 69rem;
