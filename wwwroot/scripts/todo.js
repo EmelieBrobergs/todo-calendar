@@ -1,7 +1,9 @@
 window.addEventListener('load', todo, newElement);
 
 function todo() {
-	$('#standard_calendar').calendar();
+	$('#date_calendar').calendar({
+		type: 'date'
+	});
 }
 //Function To Display Popup
 function div_show() {
