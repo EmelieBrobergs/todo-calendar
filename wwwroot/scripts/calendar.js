@@ -71,7 +71,6 @@ async function callAPI (year, month) {
     var jsonData = await response.json();
     let firstDay = true;
 
-    // TODO: Add id="grid" to: <div id="grid" class="grid-container">
     gridElement = document.getElementById('grid');
     //loop through all dates of the requested month
     for (var item of jsonData.dagar) {
@@ -88,10 +87,10 @@ async function callAPI (year, month) {
         var p = document.createElement('p');
         if (item['röd dag'] === 'Ja')
         {
-            div.classList.add('redday');
+            div.classList.add('holiday-color');
         }
 
-        p.classList.add('date');
+        div.classList.add('date');
         p.innerText = item.datum.slice(-2);
         div.append(p);
 
@@ -108,11 +107,9 @@ async function callAPI (year, month) {
         //Calculate the startpoint for the first day of the month 
         function createSpace(dayOfWeek) {  
             for (let index = 0; index < (dayOfWeek - 1); index++) {
-                var div2 = document.createElement('div');
-                // div2.classList.add('grid-item');
-                div2.classList.add('grid-item-empty');
-                div2.classList.add('date');
-                gridElement.append(div2);    
+                var emptyDiv = document.createElement('div');
+                emptyDiv.classList.add('date');
+                gridElement.append(emptyDiv);    
             }
         }
     } 
