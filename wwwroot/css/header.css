@@ -1,4 +1,5 @@
 header {
     height: 4rem;
-    background-color: aqua;
+    background: url("/img/Calendar-Blur.jpg") no-repeat left/ cover;
+    font-size: 1.5rem;
 }
