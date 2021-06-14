@@ -2,6 +2,6 @@ header {
     height: var(--header-height);
     background-color: #a6e3e9;
     border-radius: 0.5rem;
-    font-size: 2rem;
-    margin: 1rem;
+    font-size: 1.5rem;
+    margin-bottom: var(--universal-spacer);
 }

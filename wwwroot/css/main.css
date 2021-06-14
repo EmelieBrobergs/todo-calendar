@@ -3,10 +3,11 @@ html, body {
 }
 
 body {
-    /* height: 100%;
-    width: 100%; */
+    height: 100vh;
+    width: 100vw; 
+    overflow-x: hidden;
     background-color: #e3fdfd;
-
+    padding: var(--universal-spacer);
 }
 
 main {
@@ -16,11 +17,9 @@ main {
 .grid-container {
     font-size: medium;
     display: grid;
-
-    grid-template-columns: repeat(7, 1fr);
-    padding: 4rem;
-    padding-top: 0.5rem;
-    grid-gap: 1rem;
+    grid-template-columns: repeat(7, calc((100% - (6 * var(--grid-gap))) / 7));
+    grid-gap: var(--grid-gap);
+    padding-bottom: var(--universal-spacer);
 }
 .grid-item {
 
@@ -29,17 +28,17 @@ main {
     text-align: start;
     padding: 0.5rem;
     font-size: 1rem;
-    height: 4rem; 
+    height: 8rem; 
     font-weight: bold;
+    overflow: hidden;
 }
 
 .weekday {
     background-color: #a6e3e9;
     border-radius: 0.5rem;
-    height: 2rem;
+    height: 3rem;
     text-align: center;
-    /* padding: 3rem; */
-    /* padding-top: 3rem; */
+    padding: var(--universal-spacer);
     font-weight: bold;
     font-size: 1rem;
 }
@@ -49,7 +48,6 @@ main {
     color: red;
     font-weight: 200;
     text-decoration: none;
-    padding-top: 0.5rem;
 }
 
 .holiday-color {
