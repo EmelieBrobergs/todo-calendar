@@ -20,7 +20,7 @@
 // };
 
 
-window.addEventListener('load', calendar);
+// window.addEventListener('load', calendar);
 
 var date = new Date();
 var month = getMonthString(date);
@@ -28,7 +28,7 @@ var year = date.getUTCFullYear();
 var gridElement;
 
 
-function calendar() {
+function initCalendar() {
     callAPI(year, month);
 }
 
@@ -70,7 +70,7 @@ async function callAPI (year, month) {
     });
     var jsonData = await response.json();
     let firstDay = true;
-
+    //reset här (?)
     gridElement = document.getElementById('grid');
     //loop through all dates of the requested month
     for (var item of jsonData.dagar) {
@@ -100,6 +100,9 @@ async function callAPI (year, month) {
             holiday.innerText = item.helgdag;
             div.append(holiday);
         }
+
+        //TODO: Lägga till anrop som kollar registrerade Todos. En funktion som tar item.datum och returnerar antal todos.
+        
 
         //adding div to grid
         gridElement.append(div); 
