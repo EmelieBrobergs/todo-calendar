@@ -1,13 +1,13 @@
 aside {
 	height: 100%;
 	width: var(--aside-width);
-	margin-top: var(--header-height);
 	position: fixed;
 	z-index: 1;
-	top: 0;
-	left: 0;
-	background-color: #e3fdfd;
-	padding-top: 1.3rem;
+	background-color: #a6e3e9;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: var(--universal-spacer);
 }
 
 #abc {
@@ -49,6 +49,10 @@ p {
 	font-size: 1rem;
 }
 
+.form {
+	color: black;
+}
+
 hr {
 	margin: 10px -50px;
 	border: 0;
@@ -57,17 +61,14 @@ hr {
 input[type=text] {
 	width: 82%;
 	padding: 10px;
-	margin-top: 30px;
+	margin-top: 2rem;
+	margin-bottom: 2rem;
 	border: 1px solid #ccc;
+	border-radius: 1rem;
 	padding-left: 40px;
 	font-size: 16px;
-	font-family: raleway;
 }
-#name {
-	background-image: url(../images/name.jpg);
-	background-repeat: no-repeat;
-	background-position: 5px 7px;
-}
+
 textarea {
 	background-image: url(../images/msg.png);
 	background-repeat: no-repeat;
@@ -94,14 +95,15 @@ textarea {
 	font-size: 20px;
 	cursor: pointer;
 	border-radius: 5px;
+	margin-top: 2rem;
 }
 span {
-	color: red;
+	color:black;
 	font-weight: 700;
+	cursor: pointer;
 }
 
 li {
-	cursor: pointer;
 	list-style-type: none;
 	min-height: 1em;
 	outline: none;
@@ -153,7 +155,7 @@ li {
 }
 
 .arrow {
-	border: solid black;
+	border: solid white;
 	border-width: 0 3px 3px 0;
 	display: inline-block;
 	padding: 3px;
