@@ -6,12 +6,14 @@ body {
     height: 100vh;
     width: 100vw; 
     overflow-x: hidden;
-    background-color: #e3fdfd;
+    background-color: #e3fdfd;  
     padding: var(--universal-spacer);
+    color: white;
+
 }
 
 main {
-    padding-left: var(--aside-width);
+margin-left: 21rem;    
 }
 
 .grid-container {
@@ -52,6 +54,8 @@ main {
 
 .holiday-color {
     background-color: #ffb4b4;
+    color: red;
+
 }
 
 
