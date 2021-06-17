@@ -1,17 +1,38 @@
-window.addEventListener('load', todo, newElement);
+var storedDate;
+var storedTodos = [];
 
-function todo() {
+function initTodo() {
+	initCalendarPicker();
+	addEventListeners();
+}
+
+function addEventListeners() {
+	var createTodoButton = document.getElementById('submit');
+	createTodoButton.addEventListener('click', newElement);
+}
+
+function initCalendarPicker() {
+	// Calendar picker: Format date and store date info in Todo
 	$('#date_calendar').calendar({
-		type: 'date'
+		monthFirst: false,
+		type: 'date',
+		formatter: {
+			date: function (date, settings) {
+				date.setHours(0,0,0,0);
+				storedDate = date;
+			}
+		}
 	});
 }
 //Function To Display Popup
 function div_show() {
 	document.getElementById('abc').style.display = 'block';
+	//TODO: Skapa css klass för block
 }
 //Function to Hide Popup
 function div_hide() {
 	document.getElementById('abc').style.display = 'none';
+	//TODO: Skapa css klass
 }
 
 //Removes list-item
@@ -24,16 +45,20 @@ for (i = 0; i < close.length; i++) {
 }
 
 //adds item to list
-function newElement() {
+function newElement(event) {
+	event.preventDefault();
 	var li = document.createElement('li');
 	var inputValue = document.getElementById('myInput').value;
-	var t = document.createTextNode(inputValue);
-	li.appendChild(t);
+	
+	//TODO: kolla att datum är valt
 
 	if (inputValue === '') {
 		alert('You must write something!');
 	} else {
+		var t = document.createTextNode(inputValue); //flyttat ned
+		li.appendChild(t);// flyttat ned
 		document.getElementById('todoList').appendChild(li);
+		storeCreatedTodos(t); //TODO--Denna ska lagra todo-datan
 	}
 	document.getElementById('myInput').value = '';
 
@@ -55,4 +80,24 @@ function newElement() {
 	span.className = 'edit';
 	span2.appendChild(txt2);
 	li.appendChild(span2);
+}
+
+// Lagra todos
+function storeCreatedTodos(todoText) {
+	var todoItem = {date: storedDate, text: todoText};
+	storedTodos.push(todoItem);
+	//TODO: anropa funktion som rendera om kalender
+	reset();    
+    loadCalendar(year, month);
+}
+
+//anropas bla. från calendar.js för att hämta antal Todos / datum (yyyy-m-d)
+function loadTodos(selectedDate) {
+	let tempTodos = [];
+	for (item of storedTodos) {
+		if (item.date.valueOf() == selectedDate.valueOf()) {
+			tempTodos.push(item);
+		}
+	}
+	return tempTodos;
 }

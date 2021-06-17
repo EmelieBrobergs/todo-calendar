@@ -16,7 +16,7 @@
     <script src="../node_modules/fomantic-ui-css/semantic.js"></script>
     <script src="./scripts/todo.js"></script>
     <script src="./scripts/today.js"></script>
-
+    <script src="./scripts/main.js"></script>
     <script src="./scripts/calendar.js"></script>
 
 
@@ -54,26 +54,38 @@
                 </ul>
 
             </div>
+            <h5></h5>
+        </div>
+
+        <div class="flex row align-center button-box">
+
+            <ul id="todoList">
+                <h5>Idag</h5>
+                <li>Plugga <span id="icon"></span></li>
+                <li>Borsta tänderna</li>
+            </ul>
+
+        </div>
+    
 
 
-
-            <div id="abc">
-                <!-- Popup Div Starts Here -->
-                <div id="popupContact">
-                    <!-- Form -->
-                    <form action="#" id="form" method="post" name="form">
-                        <img id="close" src="./img/img3.png" onclick="div_hide()">
-                        <h2 class="form">Lägg till ToDo</h2>
-                        <hr>
-                        <input type="text" id="myInput" placeholder="Ange todo" />
-                        <div class="ui calendar" id="date_calendar">
-                        </div>
-                        <a href="javascript:%20newElement()" id="submit">Lägg till</a>
-                    </form>
-                </div>
-
-                <!-- Popup Div Ends Here -->
-            </div>
+        <div id="abc">
+            <!-- Popup Div Starts Here -->
+            <div id="popupContact">
+                <!-- Form -->
+                <form action="#" id="form" method="post" name="form">
+                    <img id="close" src="./img/img3.png" onclick="div_hide()">
+                    <h2>Lägg till ToDo</h2>
+                    <hr>
+                    <input type="text" id="myInput" placeholder="Ange todo" />
+                    <div class="ui calendar" id="date_calendar">
+                      </div>
+                    <!-- <a href="javascript:%20newElement()" id="submit">Lägg till</a> //ingen js kod här. Gör en vanlig knapp. -->
+                    <button id="submit">Lägg till</button> //ingen js kod här. Gör en vanlig knapp.
+                </form>
+           </div>
+        <!-- Popup Div Ends Here -->
+        </div>
             <!-- Display Popup Button -->
             <button class="ui primary button" id="popup" onclick="div_show()">Lägg till ToDo</button>
         </aside>
