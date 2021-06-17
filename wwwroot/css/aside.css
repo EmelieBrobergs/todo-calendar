@@ -1,13 +1,13 @@
 aside {
 	height: 100%;
 	width: var(--aside-width);
-	position: fixed;
 	z-index: 1;
 	background-color: #a6e3e9;
-    border-radius: 0.5rem;
-    font-size: 1rem;
-    font-weight: bold;
-    padding: var(--universal-spacer);
+	border-radius: 0.5rem;
+	font-size: 1rem;
+	font-weight: bold;
+	padding: var(--universal-spacer);
+	justify-content: space-between;
 }
 
 #abc {
@@ -98,7 +98,7 @@ textarea {
 	margin-top: 2rem;
 }
 span {
-	color:black;
+	color: black;
 	font-weight: 700;
 	cursor: pointer;
 }
@@ -178,3 +178,8 @@ li {
 	border: none;
 }
 
+@media (max-width: 768px) {
+	aside {
+		flex: 1;
+	}
+}

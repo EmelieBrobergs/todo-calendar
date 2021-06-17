@@ -16,80 +16,82 @@
     <script src="../node_modules/fomantic-ui-css/semantic.js"></script>
     <script src="./scripts/todo.js"></script>
     <script src="./scripts/today.js"></script>
-   
+
     <script src="./scripts/calendar.js"></script>
 
 
     <title>Calendar</title>
 </head>
 
-<body>
+<body class="flex column">
     <header class="flex row justify-center align-center">
         <h1>Kalender</h1>
     </header>
-        <!-- TODO: Information om Today -->
-    <aside class="flex column align-center padding8">
-        <div class="welcome-container">
-            <div class="month-carousel ">
-                <button class="arrow-button" onclick="prevMonth()">
-                    <i class="arrow left"></i>
-                </button>
-                <h2 id="month"></h2>
-                <button class="arrow-button" onclick="nextMonth()">
-                    <i class="arrow right"></i>
-                </button>
-            </div>
-            <div class="day">
-                <h5 id="weekday"></h5>
-            </div>
-            <h5></h5>
-        </div>
-
-        <div class="flex row align-center button-box">
-
-            <ul id="todoList">
-                <li>Plugga <span id="icon"></span></li>
-                <li>Borsta tänderna</li>
-            </ul>
-
-        </div>
-    
-
-
-        <div id="abc">
-            <!-- Popup Div Starts Here -->
-            <div id="popupContact">
-                <!-- Form -->
-                <form action="#" id="form" method="post" name="form">
-                    <img id="close" src="./img/img3.png" onclick="div_hide()">
-                    <h2 class="form">Lägg till ToDo</h2>
-                    <hr>
-                    <input type="text" id="myInput" placeholder="Ange todo" />
-                    <div class="ui calendar" id="date_calendar">
-                      </div>
-                    <a href="javascript:%20newElement()" id="submit">Lägg till</a>
-                </form>
+    <!-- TODO: Information om Today -->
+    <div class="flex grow grid">
+        <aside class="flex column align-center padding8">
+            <div class="welcome-container">
+                <div class="month-carousel ">
+                    <button class="arrow-button" onclick="prevMonth()">
+                        <i class="arrow left"></i>
+                    </button>
+                    <h2 id="month"></h2>
+                    <button class="arrow-button" onclick="nextMonth()">
+                        <i class="arrow right"></i>
+                    </button>
+                </div>
+                <div class="day">
+                    <h5 id="weekday"></h5>
+                </div>
+                <h5></h5>
             </div>
 
-            <!-- Popup Div Ends Here -->
-        </div>
-        <!-- Display Popup Button -->
-        <button class="ui primary button" id="popup" onclick="div_show()">Lägg till ToDo</button>
-    </aside>
+            <div class="flex row align-center button-box">
 
-    <main>       
-        <div id="grid" class="grid-container">
-            <div class="weekday">Måndag</div>
-            <div class="weekday">Tisdag</div>
-            <div class="weekday">Onsdag</div>
-            <div class="weekday">Torsdag</div>
-            <div class="weekday">Fredag</div>
-            <div class="weekday">Lördag</div>
-            <div class="weekday">Söndag</div>
-          </div>
+                <ul id="todoList">
+                    <li>Plugga <span id="icon"></span></li>
+                    <li>Borsta tänderna</li>
+                </ul>
 
-        <!-- TODO: Få in Todo-siffran -->
-    </main>
+            </div>
+
+
+
+            <div id="abc">
+                <!-- Popup Div Starts Here -->
+                <div id="popupContact">
+                    <!-- Form -->
+                    <form action="#" id="form" method="post" name="form">
+                        <img id="close" src="./img/img3.png" onclick="div_hide()">
+                        <h2 class="form">Lägg till ToDo</h2>
+                        <hr>
+                        <input type="text" id="myInput" placeholder="Ange todo" />
+                        <div class="ui calendar" id="date_calendar">
+                        </div>
+                        <a href="javascript:%20newElement()" id="submit">Lägg till</a>
+                    </form>
+                </div>
+
+                <!-- Popup Div Ends Here -->
+            </div>
+            <!-- Display Popup Button -->
+            <button class="ui primary button" id="popup" onclick="div_show()">Lägg till ToDo</button>
+        </aside>
+
+        <main id="grid" class="grid-container">
+        
+                <div class="weekday">Måndag</div>
+                <div class="weekday">Tisdag</div>
+                <div class="weekday">Onsdag</div>
+                <div class="weekday">Torsdag</div>
+                <div class="weekday">Fredag</div>
+                <div class="weekday">Lördag</div>
+                <div class="weekday">Söndag</div>
+        
+
+            <!-- TODO: Få in Todo-siffran -->
+        </main>
+    </div>
 </body>
 
 </html>

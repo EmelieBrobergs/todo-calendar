@@ -19,6 +19,8 @@
 //     }
 // };
 
+const todos = []
+localStorage.todos = JSON.stringify(todos);
 
 window.addEventListener('load', calendar);
 
@@ -98,6 +100,7 @@ async function callAPI (year, month) {
         {
             var holiday = document.createElement('p');
             holiday.innerText = item.helgdag;
+            holiday.classList.add('holiday'); //add
             div.append(holiday);
         }
 
