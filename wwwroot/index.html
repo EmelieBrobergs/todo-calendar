@@ -23,24 +23,36 @@
     <title>Calendar</title>
 </head>
 
-<body>
+<body class="flex column">
     <header class="flex row justify-center align-center">
         <h1>Kalender</h1>
     </header>
-        <!-- TODO: Information om Today -->
-    <aside class="flex column align-center padding8">
-        <div class="welcome-container">
-            <div class="month-carousel ">
-                <button class="arrow-button" onclick="prevMonth()">
-                    <i class="arrow left"></i>
-                </button>
-                <h2 id="month"></h2>
-                <button class="arrow-button" onclick="nextMonth()">
-                    <i class="arrow right"></i>
-                </button>
+    <!-- TODO: Information om Today -->
+    <div class="flex grow grid">
+        <aside class="flex column align-center padding8">
+            <div class="welcome-container">
+                <div class="month-carousel ">
+                    <button class="arrow-button" onclick="prevMonth()">
+                        <i class="arrow left"></i>
+                    </button>
+                    <h2 id="month"></h2>
+                    <button class="arrow-button" onclick="nextMonth()">
+                        <i class="arrow right"></i>
+                    </button>
+                </div>
+                <div class="day">
+                    <h5 id="weekday"></h5>
+                </div>
+                <h5></h5>
             </div>
-            <div class="day">
-                <h5 id="weekday"></h5>
+
+            <div class="flex row align-center button-box">
+
+                <ul id="todoList">
+                    <li>Plugga <span id="icon"></span></li>
+                    <li>Borsta tänderna</li>
+                </ul>
+
             </div>
             <h5></h5>
         </div>
@@ -71,27 +83,27 @@
                     <!-- <a href="javascript:%20newElement()" id="submit">Lägg till</a> //ingen js kod här. Gör en vanlig knapp. -->
                     <button id="submit">Lägg till</button> //ingen js kod här. Gör en vanlig knapp.
                 </form>
-            </div>
-
-            <!-- Popup Div Ends Here -->
+           </div>
+        <!-- Popup Div Ends Here -->
         </div>
-        <!-- Display Popup Button -->
-        <button class="ui primary button" id="popup" onclick="div_show()">Lägg till ToDo</button>
-    </aside>
+            <!-- Display Popup Button -->
+            <button class="ui primary button" id="popup" onclick="div_show()">Lägg till ToDo</button>
+        </aside>
 
-    <main>       
-        <div id="grid" class="grid-container">
-            <div class="weekday">Måndag</div>
-            <div class="weekday">Tisdag</div>
-            <div class="weekday">Onsdag</div>
-            <div class="weekday">Torsdag</div>
-            <div class="weekday">Fredag</div>
-            <div class="weekday">Lördag</div>
-            <div class="weekday">Söndag</div>
-          </div>
+        <main id="grid" class="grid-container">
+        
+                <div class="weekday">Måndag</div>
+                <div class="weekday">Tisdag</div>
+                <div class="weekday">Onsdag</div>
+                <div class="weekday">Torsdag</div>
+                <div class="weekday">Fredag</div>
+                <div class="weekday">Lördag</div>
+                <div class="weekday">Söndag</div>
+        
 
-        <!-- TODO: Få in Todo-siffran -->
-    </main>
+            <!-- TODO: Få in Todo-siffran -->
+        </main>
+    </div>
 </body>
 
 </html>

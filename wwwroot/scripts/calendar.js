@@ -19,6 +19,8 @@
 //     }
 // };
 
+const todos = []
+localStorage.todos = JSON.stringify(todos);
 
 var date = new Date();
 var month = date.getMonth();
@@ -70,7 +72,8 @@ function loadCalendar() {
         var p = document.createElement('p');
         p.innerText = day.getDate();
         div.append(p);
-
+        
+        //add holiday text
         if (jsonDataFromApiSholiday.dagar[daysOfMonth.indexOf(day)].helgdag) {
             div.append(createHolidayPtag(jsonDataFromApiSholiday.dagar[daysOfMonth.indexOf(day)].helgdag));
         }

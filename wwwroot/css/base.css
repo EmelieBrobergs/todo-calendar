@@ -43,23 +43,3 @@
 .padding-right {
     padding-right: 5px;
 }
-
-
-/* dessa? TA bort om de ej anvönds */
-
-.max-width {
-    max-width: 69rem;
-}
-
-.full-width {
-    width: 100%;
-}
-
-.full-height {
-    height: 100%;
-}
-
-.full-size {
-    width: 100%;
-    height: 100%;
-}
