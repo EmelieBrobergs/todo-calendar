@@ -20,8 +20,7 @@ main {
 .grid-container {
 	display: grid;
 	grid-template-columns: repeat(7, 1fr);
-	grid-template-rows: repeat(6, 1fr);
-	/* NOTE: Kolla om det går och fixa inställningar för rad 1 height */
+	grid-template-rows: 3rem repeat(6, 1fr);
 	grid-gap: var(--grid-gap);
 }
 .grid-item {
