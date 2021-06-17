@@ -54,52 +54,40 @@
                 </ul>
 
             </div>
-            <h5></h5>
-        </div>
-
-        <div class="flex row align-center button-box">
-
-            <ul id="todoList">
-                <h5>Idag</h5>
-                <li>Plugga <span id="icon"></span></li>
-                <li>Borsta tänderna</li>
-            </ul>
-
-        </div>
-    
 
 
-        <div id="abc">
-            <!-- Popup Div Starts Here -->
-            <div id="popupContact">
-                <!-- Form -->
-                <form action="#" id="form" method="post" name="form">
-                    <img id="close" src="./img/img3.png" onclick="div_hide()">
-                    <h2>Lägg till ToDo</h2>
-                    <hr>
-                    <input type="text" id="myInput" placeholder="Ange todo" />
-                    <div class="ui calendar" id="date_calendar">
-                      </div>
-                    <!-- <a href="javascript:%20newElement()" id="submit">Lägg till</a> //ingen js kod här. Gör en vanlig knapp. -->
-                    <button id="submit">Lägg till</button> //ingen js kod här. Gör en vanlig knapp.
-                </form>
-           </div>
-        <!-- Popup Div Ends Here -->
-        </div>
+
+            <div id="abc">
+                <!-- Popup Div Starts Here -->
+                <div id="popupContact">
+                    <!-- Form -->
+                    <form action="#" id="form" method="post" name="form">
+                        <img id="close" src="./img/img3.png" onclick="div_hide()">
+                        <h2>Lägg till ToDo</h2>
+                        <hr>
+                        <input type="text" id="myInput" placeholder="Ange todo" />
+                        <div class="ui calendar" id="date_calendar">
+                        </div>
+                        <!-- <a href="javascript:%20newElement()" id="submit">Lägg till</a> //ingen js kod här. Gör en vanlig knapp. -->
+                        <button id="submit">Lägg till</button> //ingen js kod här. Gör en vanlig knapp.
+                    </form>
+                </div>
+            </div>
+            <!-- Popup Div Ends Here -->
             <!-- Display Popup Button -->
             <button class="ui primary button" id="popup" onclick="div_show()">Lägg till ToDo</button>
         </aside>
 
         <main id="grid" class="grid-container">
-        
-                <div class="weekday">Måndag</div>
-                <div class="weekday">Tisdag</div>
-                <div class="weekday">Onsdag</div>
-                <div class="weekday">Torsdag</div>
-                <div class="weekday">Fredag</div>
-                <div class="weekday">Lördag</div>
-                <div class="weekday">Söndag</div>
-        
+
+            <div class="weekday">Måndag</div>
+            <div class="weekday">Tisdag</div>
+            <div class="weekday">Onsdag</div>
+            <div class="weekday">Torsdag</div>
+            <div class="weekday">Fredag</div>
+            <div class="weekday">Lördag</div>
+            <div class="weekday">Söndag</div>
+
 
             <!-- TODO: Få in Todo-siffran -->
         </main>
