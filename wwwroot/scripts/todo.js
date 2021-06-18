@@ -58,7 +58,7 @@ function newElement(event) {
 		var t = document.createTextNode(inputValue); //flyttat ned
 		li.appendChild(t);// flyttat ned
 		document.getElementById('todoList').appendChild(li);
-		storeCreatedTodos(t); //TODO--Denna ska lagra todo-datan
+		storeCreatedTodos(inputValue); //TODO--Denna ska lagra todo-datan
 	}
 	document.getElementById('myInput').value = '';
 
@@ -89,6 +89,12 @@ function storeCreatedTodos(todoText) {
 	//TODO: anropa funktion som rendera om kalender
 	reset();    
     loadCalendar(year, month);
+	saveTodoToLocalStorage();
+}
+
+function saveTodoToLocalStorage () {
+	var stingifyTodos = JSON.stringify(storedTodos);
+	localStorage.setItem('todos', stingifyTodos);
 }
 
 //anropas bla. från calendar.js för att hämta antal Todos / datum (yyyy-m-d)
