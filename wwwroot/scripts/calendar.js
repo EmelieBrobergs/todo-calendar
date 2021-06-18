@@ -20,7 +20,6 @@
 // };
 
 const todos = []
-localStorage.todos = JSON.stringify(todos);
 
 var date = new Date();
 var month = date.getMonth();

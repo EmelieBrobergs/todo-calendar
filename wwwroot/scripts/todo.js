@@ -1,13 +1,13 @@
 
-var storedTodos = localStorage.getItem('todos') ? JSON.parse(localStorage.getItem('todos')) : [];
 
 var storedDate;
 //var storedTodos = [];
 
 function initTodo() {
+	getTodoFromLocalStorage();
 	initCalendarPicker();
 	addEventListeners();
-	getTodoFromLocalStorage();
+	// TODO: renderTodos();
 }
 
 function addEventListeners() {
@@ -97,15 +97,20 @@ function storeCreatedTodos(todoText) {
 }
 
 function saveTodoToLocalStorage() {
+	console.trace('Hej')
 	var stringifyTodos = JSON.stringify(storedTodos);
 	localStorage.setItem('todos', stringifyTodos);
 }
 
 function getTodoFromLocalStorage() {
 	var stringifyTodos = localStorage.getItem('todos');
-	storedTodos = JSON.parse(stringifyTodos);
-	if(!storedTodos) {
+	console.log(stringifyTodos)
+	if(!stringifyTodos) {
 		storedTodos = [];
+	}
+	else{
+		storedTodos = JSON.parse(stringifyTodos);
+
 	}
 }
 
