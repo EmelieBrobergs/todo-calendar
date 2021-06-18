@@ -1,19 +1,21 @@
-window.addEventListener('load', main);
 
-function main() {
-	const now = new Date();
+const now = new Date();
+
+function initToday() {
+	loadTodayInfo();
+}
+
+function loadTodayInfo() {
 	const dateInfo = getDateInfo(now);
-	const aside = document.querySelector('.welcome-container');
-
-	const monthH2 = document.getElementById('month');
-	monthH2.innerText = dateInfo.month;
-
-	const weekdayH2 = document.getElementById('weekday');
-	weekdayH2.innerText = dateInfo.weekday;
-
-	const timeP = document.createElement('p');
-	timeP.innerText = now.getHours() + '.' + now.getMinutes();
-	aside.append(timeP);
+	
+	const monthH5 = document.getElementById('date-string');
+	monthH5.innerText = dateInfo.dateString;
+	
+	const timeH5 = document.getElementById('time-stamp');
+	timeH5.innerText = dateInfo.timeStamp;
+	
+	const weekdayH5 = document.getElementById('weekday-name');
+	weekdayH5.innerText = dateInfo.weekdayName;
 }
 
 /**
@@ -22,47 +24,11 @@ function main() {
  * @returns {DateInfo}
  */
 function getDateInfo(date) {
-	const month = getMonthString(date);
-	const weekday = getWeekdayString(date);
+	const dateString  = date.getFullYear() + '-' + ("0" + (date.getMonth() + 1)).slice(-2) + '-' + date.getDate()//getMonthString(date);
+	const weekdayName = getWeekdayString(date);
+	const timeStamp = now.getHours() + ':' + now.getMinutes();
 
-	return { month, weekday };
-}
-
-/**
- * Return the month for a given date in the specified language
- * @param {Date} date
- * @param {String} language
- * @returns {String}
- */
-function getMonthString(date, language) {
-	// TODO: Use languange...
-	const monthIndex = date.getMonth();
-	switch (monthIndex) {
-		case 0:
-			return 'Januari';
-		case 1:
-			return 'Februari';
-		case 2:
-			return 'Mars';
-		case 3:
-			return 'April';
-		case 4:
-			return 'Maj';
-		case 5:
-			return 'Juni';
-		case 6:
-			return 'Juli';
-		case 7:
-			return 'Augusti';
-		case 8:
-			return 'September';
-		case 9:
-			return 'Oktober';
-		case 10:
-			return 'November';
-		case 11:
-			return 'December';
-	}
+	return { dateString, weekdayName, timeStamp };
 }
 
 /**
@@ -90,4 +56,5 @@ function getWeekdayString(date) {
 	}
 }
 
-/** @typedef { { month: String, weekday: String } } DateInfo */
+//TODO: Plaering av denna? 
+/** @typedef { { dateString: String, weekdayName: String, timeStamp: String } } DateInfo */

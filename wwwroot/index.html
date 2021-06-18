@@ -30,18 +30,27 @@
     <!-- TODO: Information om Today -->
     <div class="flex grow grid">
         <aside class="flex column align-center padding8">
-            <div class="welcome-container">
-                <div class="month-carousel ">
-                    <button class="arrow-button" onclick="prevMonth()">
-                        <i class="arrow left"></i>
-                    </button>
-                    <h2 id="month"></h2>
-                    <button class="arrow-button" onclick="nextMonth()">
-                        <i class="arrow right"></i>
-                    </button>
+            <div class="welcome-container full-width">
+                <!-- NOTE: removed class month-carousel, used Base.css classes -->
+                <div class="flex align-center full-width column">
+                    <h5 id="year"></h5>
+                    <div class="flex full-width space-between row">
+                        <button class="arrow-button" onclick="prevMonth()">
+                            <i class="arrow left"></i>
+                        </button>
+                        <h2 id="month-name"></h2>
+                        <button class="arrow-button" onclick="nextMonth()">
+                            <i class="arrow right"></i>
+                        </button>
+                    </div>
                 </div>
-                <div class="day">
-                    <h5 id="weekday"></h5>
+                <hr class="full-width">
+                <div class="flex column">
+                    <div class="flex row">
+                        <h5 id="weekday-name" class="padding-right"></h5>
+                        <h5 id="time-stamp"></h5>
+                    </div>
+                    <h5 id="date-string" class="text-align-center"></h5>
                 </div>
                 <h5></h5>
             </div>

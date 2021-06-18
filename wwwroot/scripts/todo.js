@@ -1,11 +1,15 @@
+
+var storedTodos = localStorage.getItem('todos') ? JSON.parse(localStorage.getItem('todos')) : [];
+
 var storedDate;
-var storedTodos = [];
+//var storedTodos = [];
 
 var todoList = [];
 
 function initTodo() {
 	initCalendarPicker();
 	addEventListeners();
+	getTodoFromLocalStorage();
 }
 
 function addEventListeners() {
@@ -19,6 +23,7 @@ function initCalendarPicker() {
 		monthFirst: false,
 		type: 'date',
 		formatter: {
+ 27-förbättring-av-js
 			date: function(date, settings) {
 				date.setHours(0, 0, 0, 0);
 				storedDate = date;
@@ -40,6 +45,7 @@ function div_hide() {
 
 //Adds item
 function addNewTodoItem(event) {
+
 	event.preventDefault();
 
 	//Creates li element for every listitem
@@ -53,6 +59,7 @@ function addNewTodoItem(event) {
 		li.appendChild(t);
 		document.getElementById('todoList').appendChild(li);
 		storeCreatedTodos(inputValue);
+
 	}
 
 	//Creates deletebutton for everylistitem
@@ -77,7 +84,7 @@ function deleteTodo() {
 	var close = document.getElementsByClassName('icon-span-delete-button');
 	var i;
 	for (i = 0; i < close.length; i++) {
-		close[i].onclick = function() {
+		close[i].onclick = function () {
 			var div = this.parentElement;
 			div.style.display = 'none';
 		};
@@ -101,15 +108,31 @@ function storeCreatedTodos(todoText) {
 	//TODO: anropa funktion som rendera om kalender
 	reset();
 	loadCalendar(year, month);
+	saveTodoToLocalStorage();
+
 }
 
-//anropas bla. från calendar.js för att hämta antal Todos / datum (yyyy-m-d)
-function loadTodos(selectedDate) {
-	let tempTodos = [];
-	for (item of storedTodos) {
-		if (item.date.valueOf() == selectedDate.valueOf()) {
-			tempTodos.push(item);
-		}
-	}
-	return tempTodos;
+function saveTodoToLocalStorage() {
+	var stringifyTodos = JSON.stringify(storedTodos);
+	localStorage.setItem('todos', stringifyTodos);
 }
+
+function getTodoFromLocalStorage() {
+	var stringifyTodos = localStorage.getItem('todos');
+	storedTodos = JSON.parse(stringifyTodos);
+	if(!storedTodos) {
+		storedTodos = [];
+	}
+}
+
+	//anropas bla. från calendar.js för att hämta antal Todos / datum (yyyy-m-d)
+	function loadTodos(selectedDate) {
+		let tempTodos = [];
+		for (item of storedTodos) {
+			if (item.date.valueOf() == selectedDate.valueOf()) {
+				tempTodos.push(item);
+			}
+		}
+		return tempTodos;
+	}
+	
