@@ -6,5 +6,6 @@ function main () {
     // initialize allt
     initCalendar();
     initTodo();
+    today();
 }
 

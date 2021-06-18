@@ -1,19 +1,22 @@
-window.addEventListener('load', main);
 
-function main() {
-	const now = new Date();
+const now = new Date();
+
+function today() {
 	const dateInfo = getDateInfo(now);
 	const aside = document.querySelector('.welcome-container');
 
-	const monthH2 = document.getElementById('month');
-	monthH2.innerText = dateInfo.month;
+	const monthH5 = document.getElementById('date-string');
+	monthH5.innerText = dateInfo.dateString;
+	
+	const timeH5 = document.getElementById('time-stamp');
+	timeH5.innerText = dateInfo.timeStamp;
 
-	const weekdayH2 = document.getElementById('weekday');
-	weekdayH2.innerText = dateInfo.weekday;
+	const weekdayH5 = document.getElementById('weekday-name');
+	weekdayH5.innerText = dateInfo.weekdayName;
 
-	const timeP = document.createElement('p');
-	timeP.innerText = now.getHours() + '.' + now.getMinutes();
-	aside.append(timeP);
+	// const timeP = document.createElement('p');
+	// timeP.innerText = dateInfo.timeStamp;
+	// aside.append(timeP);
 }
 
 /**
@@ -22,10 +25,11 @@ function main() {
  * @returns {DateInfo}
  */
 function getDateInfo(date) {
-	const month = getMonthString(date);
-	const weekday = getWeekdayString(date);
+	const dateString  = date.getFullYear() + '-' + ("0" + (date.getMonth() + 1)).slice(-2) + '-' + date.getDate()//getMonthString(date);
+	const weekdayName = getWeekdayString(date);
+	const timeStamp = now.getHours() + ':' + now.getMinutes();
 
-	return { month, weekday };
+	return { dateString, weekdayName, timeStamp };
 }
 
 /**
@@ -34,7 +38,7 @@ function getDateInfo(date) {
  * @param {String} language
  * @returns {String}
  */
-function getMonthString(date, language) {
+function getMonthString(date, language) { //döp om funktionen "getMonthName"
 	// TODO: Use languange...
 	const monthIndex = date.getMonth();
 	switch (monthIndex) {
@@ -90,4 +94,4 @@ function getWeekdayString(date) {
 	}
 }
 
-/** @typedef { { month: String, weekday: String } } DateInfo */
+/** @typedef { { dateString: String, weekdayName: String, timeStamp: String } } DateInfo */

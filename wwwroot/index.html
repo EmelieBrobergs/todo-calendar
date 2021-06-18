@@ -30,18 +30,23 @@
     <!-- TODO: Information om Today -->
     <div class="flex grow grid">
         <aside class="flex column align-center padding8">
-            <div class="welcome-container">
-                <div class="month-carousel ">
+            <div class="welcome-container full-width">
+                <div class="month-carousel">
                     <button class="arrow-button" onclick="prevMonth()">
                         <i class="arrow left"></i>
                     </button>
-                    <h2 id="month"></h2>
+                    <!-- TODO: månad + år ska in -->
+                    <h2 id="year"></h2>
+                    <h2 id="month-name"></h2>
                     <button class="arrow-button" onclick="nextMonth()">
                         <i class="arrow right"></i>
                     </button>
                 </div>
+                <hr class="full-width">
                 <div class="day">
-                    <h5 id="weekday"></h5>
+                    <span id="weekday-name"></span>
+                    <span id="time-stamp"></span>
+                    <h5 id="date-string"></h5>
                 </div>
                 <h5></h5>
             </div>
