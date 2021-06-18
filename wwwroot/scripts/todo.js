@@ -2,12 +2,12 @@
 var storedTodos = localStorage.getItem('todos') ? JSON.parse(localStorage.getItem('todos')) : [];
 
 var storedDate;
-var storedTodos = [];
+//var storedTodos = [];
 
 function initTodo() {
 	initCalendarPicker();
 	addEventListeners();
-	getTodoFromLocalStorage()
+	getTodoFromLocalStorage();
 }
 
 function addEventListeners() {
@@ -97,16 +97,18 @@ function storeCreatedTodos(todoText) {
 }
 
 function saveTodoToLocalStorage() {
-	var stingifyTodos = JSON.stringify(storedTodos);
-	localStorage.setItem('todos', stingifyTodos);
+	var stringifyTodos = JSON.stringify(storedTodos);
+	localStorage.setItem('todos', stringifyTodos);
 }
 
 function getTodoFromLocalStorage() {
 	var stringifyTodos = localStorage.getItem('todos');
-	if (stringifyTodos) {
-		todos = JSON.parse(stringifyTodos);
+	storedTodos = JSON.parse(stringifyTodos);
+	if(!storedTodos) {
+		storedTodos = [];
 	}
 }
+
 	//anropas bla. från calendar.js för att hämta antal Todos / datum (yyyy-m-d)
 	function loadTodos(selectedDate) {
 		let tempTodos = [];
