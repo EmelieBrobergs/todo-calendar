@@ -4,6 +4,8 @@ var storedTodos = localStorage.getItem('todos') ? JSON.parse(localStorage.getIte
 var storedDate;
 //var storedTodos = [];
 
+var todoList = [];
+
 function initTodo() {
 	initCalendarPicker();
 	addEventListeners();
@@ -12,7 +14,7 @@ function initTodo() {
 
 function addEventListeners() {
 	var createTodoButton = document.getElementById('submit');
-	createTodoButton.addEventListener('click', newElement);
+	createTodoButton.addEventListener('click', addNewTodoItem);
 }
 
 function initCalendarPicker() {
@@ -21,7 +23,8 @@ function initCalendarPicker() {
 		monthFirst: false,
 		type: 'date',
 		formatter: {
-			date: function (date, settings) {
+ 27-förbättring-av-js
+			date: function(date, settings) {
 				date.setHours(0, 0, 0, 0);
 				storedDate = date;
 			}
@@ -30,60 +33,72 @@ function initCalendarPicker() {
 }
 //Function To Display Popup
 function div_show() {
-	document.getElementById('abc').style.display = 'block';
+	document.getElementById('popupForm').style.display = 'block';
+
 	//TODO: Skapa css klass för block
 }
 //Function to Hide Popup
 function div_hide() {
-	document.getElementById('abc').style.display = 'none';
+	document.getElementById('popupForm').style.display = 'none';
 	//TODO: Skapa css klass
 }
 
-//Removes list-item
-var close = document.getElementsByClassName('close');
-var i;
-for (i = 0; i < close.length; i++) {
-	close[i].onclick = function () {
-		div.style.display = 'none';
-	};
-}
+//Adds item
+function addNewTodoItem(event) {
 
-//adds item to list
-function newElement(event) {
 	event.preventDefault();
+
+	//Creates li element for every listitem
 	var li = document.createElement('li');
 	var inputValue = document.getElementById('myInput').value;
 
-	//TODO: kolla att datum är valt
-
 	if (inputValue === '') {
-		alert('You must write something!');
+		alert('You must write something');
 	} else {
-		var t = document.createTextNode(inputValue); //flyttat ned
-		li.appendChild(t);// flyttat ned
+		var t = document.createTextNode(inputValue);
+		li.appendChild(t);
 		document.getElementById('todoList').appendChild(li);
-		storeCreatedTodos(inputValue); //TODO--Denna ska lagra todo-datan
+		storeCreatedTodos(inputValue);
+
 	}
-	document.getElementById('myInput').value = '';
 
-	var span = document.createElement('span');
-	var txt = document.createTextNode('\u{1F5D1}');
-	span.className = 'close';
-	span.appendChild(txt);
-	li.appendChild(span);
+	//Creates deletebutton for everylistitem
+	const span = document.createElement('span');
+	span.innerText = '\u{1F5D1}';
+	span.addEventListener('click', () => deleteTodo());
+	span.classList.add('icon-span-delete-button');
+	li.append(span);
 
+	//Create editbutton for everylistitem
+	const span2 = document.createElement('span');
+	span2.innerText = '\u{1F58B}';
+	span2.addEventListener('click', () => editTodo());
+	span2.classList.add('icon-span-edit-button');
+	li.append(span2);
+}
+
+//Tömmer skrivfältet
+document.getElementById('myInput').value = '';
+
+function deleteTodo() {
+	var close = document.getElementsByClassName('icon-span-delete-button');
+	var i;
 	for (i = 0; i < close.length; i++) {
 		close[i].onclick = function () {
 			var div = this.parentElement;
 			div.style.display = 'none';
 		};
 	}
+}
 
-	var span2 = document.createElement('span');
-	var txt2 = document.createTextNode('\u{1F58B}');
-	span.className = 'edit';
-	span2.appendChild(txt2);
-	li.appendChild(span2);
+//TODO: ändra denna funktion så den uppdaterar rätt todo
+//i arrayen för nu lägger den bara till nya toditems
+function editTodo() {
+	var edit = document.getElementsByClassName('icon-span-delete-button');
+	var i;
+	for (i = 0; i < edit.length; i++) {
+		edit[i].onclick = div_show();
+	}
 }
 
 // Lagra todos
@@ -94,6 +109,7 @@ function storeCreatedTodos(todoText) {
 	reset();
 	loadCalendar(year, month);
 	saveTodoToLocalStorage();
+
 }
 
 function saveTodoToLocalStorage() {
