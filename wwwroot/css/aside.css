@@ -10,7 +10,7 @@ aside {
 	justify-content: space-between;
 }
 
-#popupForm {
+#abc {
 	width: 100%;
 	height: 100%;
 	opacity: .95;
@@ -160,10 +160,6 @@ li {
 	flex-direction: column;
 }
 
-.font-color {
-	color: black;
-}
-
 .arrow {
 	border: solid white;
 	border-width: 0 3px 3px 0;
@@ -172,11 +168,14 @@ li {
 }
 
 .right {
+	transform: rotate(-45deg);
+	-webkit-transform: rotate(-45deg);
 	cursor: pointer;
 }
 
 .left {
-	
+	transform: rotate(135deg);
+	-webkit-transform: rotate(135deg);
 	cursor: pointer;
 }
 
