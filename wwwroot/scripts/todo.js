@@ -1,9 +1,13 @@
+
+var storedTodos = localStorage.getItem('todos') ? JSON.parse(localStorage.getItem('todos')) : [];
+
 var storedDate;
-var storedTodos = [];
+//var storedTodos = [];
 
 function initTodo() {
 	initCalendarPicker();
 	addEventListeners();
+	getTodoFromLocalStorage();
 }
 
 function addEventListeners() {
@@ -18,7 +22,7 @@ function initCalendarPicker() {
 		type: 'date',
 		formatter: {
 			date: function (date, settings) {
-				date.setHours(0,0,0,0);
+				date.setHours(0, 0, 0, 0);
 				storedDate = date;
 			}
 		}
@@ -39,7 +43,7 @@ function div_hide() {
 var close = document.getElementsByClassName('close');
 var i;
 for (i = 0; i < close.length; i++) {
-	close[i].onclick = function() {
+	close[i].onclick = function () {
 		div.style.display = 'none';
 	};
 }
@@ -49,7 +53,7 @@ function newElement(event) {
 	event.preventDefault();
 	var li = document.createElement('li');
 	var inputValue = document.getElementById('myInput').value;
-	
+
 	//TODO: kolla att datum är valt
 
 	if (inputValue === '') {
@@ -58,7 +62,7 @@ function newElement(event) {
 		var t = document.createTextNode(inputValue); //flyttat ned
 		li.appendChild(t);// flyttat ned
 		document.getElementById('todoList').appendChild(li);
-		storeCreatedTodos(t); //TODO--Denna ska lagra todo-datan
+		storeCreatedTodos(inputValue); //TODO--Denna ska lagra todo-datan
 	}
 	document.getElementById('myInput').value = '';
 
@@ -69,7 +73,7 @@ function newElement(event) {
 	li.appendChild(span);
 
 	for (i = 0; i < close.length; i++) {
-		close[i].onclick = function() {
+		close[i].onclick = function () {
 			var div = this.parentElement;
 			div.style.display = 'none';
 		};
@@ -84,20 +88,35 @@ function newElement(event) {
 
 // Lagra todos
 function storeCreatedTodos(todoText) {
-	var todoItem = {date: storedDate, text: todoText};
+	var todoItem = { date: storedDate, text: todoText };
 	storedTodos.push(todoItem);
 	//TODO: anropa funktion som rendera om kalender
-	reset();    
-    loadCalendar(year, month);
+	reset();
+	loadCalendar(year, month);
+	saveTodoToLocalStorage();
 }
 
-//anropas bla. från calendar.js för att hämta antal Todos / datum (yyyy-m-d)
-function loadTodos(selectedDate) {
-	let tempTodos = [];
-	for (item of storedTodos) {
-		if (item.date.valueOf() == selectedDate.valueOf()) {
-			tempTodos.push(item);
-		}
-	}
-	return tempTodos;
+function saveTodoToLocalStorage() {
+	var stringifyTodos = JSON.stringify(storedTodos);
+	localStorage.setItem('todos', stringifyTodos);
 }
+
+function getTodoFromLocalStorage() {
+	var stringifyTodos = localStorage.getItem('todos');
+	storedTodos = JSON.parse(stringifyTodos);
+	if(!storedTodos) {
+		storedTodos = [];
+	}
+}
+
+	//anropas bla. från calendar.js för att hämta antal Todos / datum (yyyy-m-d)
+	function loadTodos(selectedDate) {
+		let tempTodos = [];
+		for (item of storedTodos) {
+			if (item.date.valueOf() == selectedDate.valueOf()) {
+				tempTodos.push(item);
+			}
+		}
+		return tempTodos;
+	}
+	
