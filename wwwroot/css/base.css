@@ -40,6 +40,18 @@
     align-items: center;
 }
 
+.space-between {
+    justify-content: space-between;
+}
+
 .padding-right {
-    padding-right: 5px;
+    padding-right: 1rem;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.text-align-center {
+    text-align: center;
 }

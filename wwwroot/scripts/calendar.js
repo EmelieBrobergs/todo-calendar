@@ -33,11 +33,11 @@ var jsonDataFromApiSholiday;
 async function initCalendar() {
     await callApiSholiday();
     loadCalendar();
-    
+    setSelectedMonthYear();
 }
 
 async function callApiSholiday() {
-    var apiResponse = await fetch('https://sholiday.faboul.se/dagar/v2.1/' + year + '/' + getMonthAsString(month), {
+    var apiResponse = await fetch('https://sholiday.faboul.se/dagar/v2.1/' + year + '/' + getMonthIndexAsString(), {
         method: 'GET'
     });
     jsonDataFromApiSholiday = await apiResponse.json();
@@ -86,7 +86,6 @@ function loadCalendar() {
 
         //adding div to grid
         gridElement.append(div); 
-
     } 
 }
 
@@ -178,11 +177,10 @@ function countTodosForOneDay(date) {
 
 /**
  * Format month corret for API call
- * @param {Number} monthIndex 
  * @returns {Text}
  */
-function getMonthAsString(monthIndex) {
-    switch (monthIndex) {
+function getMonthIndexAsString() {
+    switch (month) {
         case 0: return '01';
         case 1: return '02';
         case 2: return '03';
@@ -196,4 +194,46 @@ function getMonthAsString(monthIndex) {
         case 10: return '11';
         case 11: return '12';
     }
+}
+
+
+function setSelectedMonthYear() {
+    let yearTag = document.getElementById('year');
+    yearTag.innerText = year;
+
+    let monthNameTag = document.getElementById('month-name');
+    monthNameTag.innerText = getMonthName();
+}
+
+/**
+ * 
+ * @returns {Text}
+ */
+function getMonthName() {
+	switch (month) {
+		case 0:
+			return 'Januari';
+		case 1:
+			return 'Februari';
+		case 2:
+			return 'Mars';
+		case 3:
+			return 'April';
+		case 4:
+			return 'Maj';
+		case 5:
+			return 'Juni';
+		case 6:
+			return 'Juli';
+		case 7:
+			return 'Augusti';
+		case 8:
+			return 'September';
+		case 9:
+			return 'Oktober';
+		case 10:
+			return 'November';
+		case 11:
+			return 'December';
+	}
 }
