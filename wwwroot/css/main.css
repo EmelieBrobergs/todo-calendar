@@ -35,6 +35,7 @@ main {
 .weekday {
 	background-color: #a6e3e9;
 	border-radius: 0.5rem;
+	height: 3rem;
 	text-align: center;
 	padding: var(--universal-spacer);
 	font-size: 1rem;
@@ -43,6 +44,7 @@ main {
 .holiday {
 	font-size: 0.8rem;
 	color: red;
+	font-weight: 200;
 	text-decoration: none;
 }
 
