@@ -1,12 +1,12 @@
-var storedTodos = localStorage.getItem('todos') ? JSON.parse(localStorage.getItem('todos')) : [];
-
 var storedDate;
 //var storedTodos = [];
 
 function initTodo() {
+	getTodoFromLocalStorage();
 	initCalendarPicker();
 	addEventListeners();
-	getTodoFromLocalStorage();
+	//resetTodos();
+	renderTodos();
 }
 
 function addEventListeners() {
@@ -50,10 +50,8 @@ function addNewTodoItem(event) {
 	if (inputValue === '') {
 		alert('You must write something!');
 	} else {
-		var t = document.createTextNode(inputValue); //flyttat ned
-		li.appendChild(t); // flyttat ned
-		document.getElementById('todoList').appendChild(li);
 		storeCreatedTodos(inputValue); //TODO--Denna ska lagra todo-datan
+		renderTodos();
 	}
 	//Create deletebutton for everylistitem
 	const span = document.createElement('span');
@@ -98,32 +96,55 @@ function editTodo() {
 function storeCreatedTodos(todoText) {
 	var todoItem = { date: storedDate, text: todoText };
 	storedTodos.push(todoItem);
-	//TODO: anropa funktion som rendera om kalender
-	reset();
+	resetCalendar();
 	loadCalendar(year, month);
 	saveTodoToLocalStorage();
 }
 
 function saveTodoToLocalStorage() {
+	//console.trace('Hej')
 	var stringifyTodos = JSON.stringify(storedTodos);
 	localStorage.setItem('todos', stringifyTodos);
 }
 
 function getTodoFromLocalStorage() {
 	var stringifyTodos = localStorage.getItem('todos');
-	storedTodos = JSON.parse(stringifyTodos);
-	if (!storedTodos) {
+	//console.log(stringifyTodos)
+	if(!stringifyTodos) {
 		storedTodos = [];
+	}
+	else{
+		storedTodos = JSON.parse(stringifyTodos);
+
 	}
 }
 
-//anropas bla. från calendar.js för att hämta antal Todos / datum (yyyy-m-d)
-function loadTodos(selectedDate) {
-	let tempTodos = [];
-	for (item of storedTodos) {
-		if (item.date.valueOf() == selectedDate.valueOf()) {
-			tempTodos.push(item);
-		}
+function renderTodos() {
+	 resetTodos();
+	storedTodos.forEach(todoItem => {
+		var li = document.createElement('li');
+		li.classList.add('todo-list-item');
+		li.innerText = todoItem.text;
+		document.getElementById('todoList').appendChild(li);
+		//TODO: Anropa funktion för att lägga till knappar
+		
+	});
+}
+
+function resetTodos() {
+    document
+      .querySelectorAll('.todo-list-item')
+      .forEach((e) => e.parentNode.removeChild(e));
+}
+
+
+	//anropas bla. från calendar.js för att hämta antal Todos / datum (yyyy-m-d)
+	function loadTodos(selectedDate) {
+		let tempTodos = [];
+		for (item of storedTodos) {
+			if (item.date.valueOf() == selectedDate.valueOf()) {
+				tempTodos.push(item);
+			}
 	}
 	return tempTodos;
 }

@@ -20,7 +20,6 @@
 // };
 
 const todos = []
-localStorage.todos = JSON.stringify(todos);
 
 var date = new Date();
 var month = date.getMonth();
@@ -44,7 +43,7 @@ async function callApiSholiday() {
 }
 
 function loadCalendar() { 
-    reset();
+    resetCalendar();
     let daysOfMonth = createDateArrayOfMonth();
 
     let firstDay = true;
@@ -89,7 +88,7 @@ function loadCalendar() {
     } 
 }
 
-function reset() {
+function resetCalendar() {
     document
       .querySelectorAll(".calendar-item")
       .forEach((e) => e.parentNode.removeChild(e));
