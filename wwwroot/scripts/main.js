@@ -1,11 +1,11 @@
 window.addEventListener('load', main);
 
-function main () {
+async function main () {
     // load todos from local storage()
 
     // initialize allt
-    initCalendar();
     initTodo();
+    await initCalendar();
     initToday();
 }
 

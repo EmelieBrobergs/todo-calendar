@@ -166,11 +166,11 @@ function createHolidayPtag(helgdag) {
 
 /**
  * 
- * @param {Date} date 
+ * @param {Date} inputDate 
  * @returns {Number}
  */
-function countTodosForOneDay(date) {
-    let countedTodos = loadTodos(date);
+function countTodosForOneDay(inputDate) {
+    let countedTodos = loadTodos(inputDate);
     return countedTodos.length;
 }
 

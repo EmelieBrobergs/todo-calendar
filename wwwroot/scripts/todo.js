@@ -1,12 +1,10 @@
 var storedDate;
-//var storedTodos = [];
+var storedTodos = [];
 
 function initTodo() {
 	getTodoFromLocalStorage();
 	initCalendarPicker();
 	addEventListeners();
-	//resetTodos();
-	renderTodos();
 }
 
 function addEventListeners() {
@@ -71,15 +69,20 @@ function addNewTodoItem(event) {
 
 //Tömmer skrivfältet
 
-function deleteTodo() {
-	var close = document.getElementsByClassName('icon-span-delete-button');
-	var i;
-	for (i = 0; i < close.length; i++) {
-		close[i].onclick = function () {
-			var div = this.parentElement;
-			div.style.display = 'none';
-		};
-	}
+function deleteTodo(todoItem) {
+	console.log(todoItem);
+	storedTodos.splice(storedTodos.indexOf(todoItem), 1);
+	// var close = document.getElementsByClassName('icon-span-delete-button');
+	// var i;
+	// for (i = 0; i < close.length; i++) {
+	// 	close[i].onclick = function () {
+	// 		var div = this.parentElement;
+	// 		div.style.display = 'none';
+	// 	};
+	// }
+	updateLocalStorage();
+	renderTodos();
+	loadCalendar();
 }
 
 //TODO: ändra denna funktion så den uppdaterar rätt todo
@@ -97,7 +100,12 @@ function storeCreatedTodos(todoText) {
 	var todoItem = { date: storedDate, text: todoText };
 	storedTodos.push(todoItem);
 	resetCalendar();
-	loadCalendar(year, month);
+	loadCalendar();
+	saveTodoToLocalStorage();
+}
+
+function updateLocalStorage() {
+	localStorage.clear();
 	saveTodoToLocalStorage();
 }
 
@@ -115,7 +123,7 @@ function getTodoFromLocalStorage() {
 	}
 	else{
 		storedTodos = JSON.parse(stringifyTodos);
-
+		renderTodos();
 	}
 }
 
@@ -127,6 +135,13 @@ function renderTodos() {
 		li.innerText = todoItem.text;
 		document.getElementById('todoList').appendChild(li);
 		//TODO: Anropa funktion för att lägga till knappar
+
+		//Create deletebutton for everylistitem
+		const span = document.createElement('span');
+		span.innerText = '\u{1F5D1}';
+		span.addEventListener('click', () => deleteTodo(todoItem));
+		span.classList.add('icon-span-delete-button');
+		li.append(span);
 		
 	});
 }
@@ -138,7 +153,7 @@ function resetTodos() {
 }
 
 
-	//anropas bla. från calendar.js för att hämta antal Todos / datum (yyyy-m-d)
+	//anropas bla. från calendar.js
 	function loadTodos(selectedDate) {
 		let tempTodos = [];
 		for (item of storedTodos) {
