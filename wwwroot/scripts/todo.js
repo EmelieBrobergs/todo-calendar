@@ -58,7 +58,7 @@ function addNewTodoItem(event) {
 }
 
 //Create editbutton for everylistitem
-function appendCreatedEditButton() {
+function createEditButton() {
 	const span2 = document.createElement('span');
 	span2.innerText = '\u{1F58B}';
 	span2.addEventListener('click', () => editTodo());
@@ -67,7 +67,7 @@ function appendCreatedEditButton() {
 }
 	
 //Create deletebutton for everylistitem
-function appendCreatedDeleteButton() {
+function createDeleteButton() {
 	const span = document.createElement('span');
 	span.innerText = '\u{1F5D1}';
 	span.addEventListener('click', () => deleteTodo());
@@ -133,8 +133,8 @@ function renderTodos() {
 		li.classList.add('todo-list-item');
 		li.innerText = todoItem.text;
 		document.getElementById('todoList').appendChild(li);
-		li.append(appendCreatedDeleteButton());
-		li.append(appendCreatedEditButton());
+		li.append(createEditButton());
+		li.append(createDeleteButton());
 		//TODO: Anropa funktion för att lägga till knappar
 	});
 }
