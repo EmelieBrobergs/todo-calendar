@@ -1,5 +1,3 @@
-
-
 var storedDate;
 //var storedTodos = [];
 
@@ -7,6 +5,7 @@ function initTodo() {
 	getTodoFromLocalStorage();
 	initCalendarPicker();
 	addEventListeners();
+	//resetTodos();
 	renderTodos();
 }
 
@@ -62,7 +61,9 @@ function newElement(event) {
 		// var t = document.createTextNode(inputValue); //flyttat ned
 		// li.appendChild(t);// flyttat ned
 		// document.getElementById('todoList').appendChild(li);
+
 		storeCreatedTodos(inputValue); //TODO--Denna ska lagra todo-datan
+		renderTodos();
 	}
 	document.getElementById('myInput').value = '';
 
@@ -90,8 +91,7 @@ function newElement(event) {
 function storeCreatedTodos(todoText) {
 	var todoItem = { date: storedDate, text: todoText };
 	storedTodos.push(todoItem);
-	//TODO: anropa funktion som rendera om kalender
-	reset();
+	resetCalendar();
 	loadCalendar(year, month);
 	saveTodoToLocalStorage();
 }
@@ -115,15 +115,21 @@ function getTodoFromLocalStorage() {
 }
 
 function renderTodos() {
+	 resetTodos();
 	storedTodos.forEach(todoItem => {
 		var li = document.createElement('li');
-		var inputValue = document.getElementById('myInput').value;
-		var t = document.createTextNode(inputValue);
-		document.getElementById('todoList').appendChild(li);
-		//li.classList.add(storedTodos);
+		li.classList.add('todo-list-item');
 		li.innerText = todoItem.text;
-		li.appendChild(t);
+		document.getElementById('todoList').appendChild(li);
+		//TODO: Anropa funktion för att lägga till knappar
+		
 	});
+}
+
+function resetTodos() {
+    document
+      .querySelectorAll('.todo-list-item')
+      .forEach((e) => e.parentNode.removeChild(e));
 }
 
 
