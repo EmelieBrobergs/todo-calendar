@@ -53,6 +53,7 @@ function addNewTodoItem(event) {
 		storeCreatedTodos(inputValue); //TODO--Denna ska lagra todo-datan
 		renderTodos();
 	}
+	document.getElementById('myInput').value = '';
 	//Create deletebutton for everylistitem
 	const span = document.createElement('span');
 	span.innerText = '\u{1F5D1}';
@@ -69,7 +70,6 @@ function addNewTodoItem(event) {
 }
 
 //Tömmer skrivfältet
-document.getElementById('myInput').value = '';
 
 function deleteTodo() {
 	var close = document.getElementsByClassName('icon-span-delete-button');
