@@ -11,8 +11,10 @@ function loadTodayInfo() {
 	const monthH5 = document.getElementById('date-string');
 	monthH5.innerText = dateInfo.dateString;
 	
-	const timeH5 = document.getElementById('time-stamp');
-	timeH5.innerText = dateInfo.timeStamp;
+	setInterval(function(){
+        renderClock();
+    },60000);
+	renderClock()
 	
 	const weekdayH5 = document.getElementById('weekday-name');
 	weekdayH5.innerText = dateInfo.weekdayName;
@@ -26,9 +28,8 @@ function loadTodayInfo() {
 function getDateInfo(date) {
 	const dateString  = date.getFullYear() + '-' + ("0" + (date.getMonth() + 1)).slice(-2) + '-' + date.getDate()//getMonthString(date);
 	const weekdayName = getWeekdayString(date);
-	const timeStamp = now.getHours() + ':' + now.getMinutes();
 
-	return { dateString, weekdayName, timeStamp };
+	return { dateString, weekdayName };
 }
 
 /**
@@ -54,6 +55,12 @@ function getWeekdayString(date) {
 		case 6:
 			return 'Lördag';
 	}
+}
+
+function renderClock() {
+	let time = (new Date()).toString().match(/(\d\d:\d\d)/);
+	const timeH5 = document.getElementById('time-stamp');
+	timeH5.innerText = time[0];
 }
 
 //TODO: Plaering av denna? 
