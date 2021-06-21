@@ -42,7 +42,7 @@ function div_hide() {
 function addNewTodoItem(event) {
 	event.preventDefault();
 
-	var li = document.createElement('li');
+	//var li = document.createElement('li');
 	var inputValue = document.getElementById('myInput').value;
 
 	//TODO: kolla att datum är valt
@@ -53,24 +53,30 @@ function addNewTodoItem(event) {
 		storeCreatedTodos(inputValue); //TODO--Denna ska lagra todo-datan
 		renderTodos();
 	}
+	//Tömmer skrivfältet
 	document.getElementById('myInput').value = '';
-	//Create deletebutton for everylistitem
-	const span = document.createElement('span');
-	span.innerText = '\u{1F5D1}';
-	span.addEventListener('click', () => deleteTodo());
-	span.classList.add('icon-span-delete-button');
-	li.append(span);
+}
 
-	//Create editbutton for everylistitem
+//Create editbutton for everylistitem
+function appendCreatedEditButton() {
 	const span2 = document.createElement('span');
 	span2.innerText = '\u{1F58B}';
 	span2.addEventListener('click', () => editTodo());
 	span2.classList.add('icon-span-edit-button');
-	li.append(span2);
+	return span2;
+}
+	
+//Create deletebutton for everylistitem
+function appendCreatedDeleteButton() {
+	const span = document.createElement('span');
+	span.innerText = '\u{1F5D1}';
+	span.addEventListener('click', () => deleteTodo());
+	span.classList.add('icon-span-delete-button');
+	return span;
 }
 
-//Tömmer skrivfältet
-
+////TODO: ändra denna funktion så den raderar rätt todo
+//i arrayen för nu raderas det inte i local storage
 function deleteTodo() {
 	var close = document.getElementsByClassName('icon-span-delete-button');
 	var i;
@@ -120,14 +126,16 @@ function getTodoFromLocalStorage() {
 }
 
 function renderTodos() {
-	 resetTodos();
+	resetTodos();
+
 	storedTodos.forEach(todoItem => {
 		var li = document.createElement('li');
 		li.classList.add('todo-list-item');
 		li.innerText = todoItem.text;
 		document.getElementById('todoList').appendChild(li);
+		li.append(appendCreatedDeleteButton());
+		li.append(appendCreatedEditButton());
 		//TODO: Anropa funktion för att lägga till knappar
-		
 	});
 }
 
@@ -136,7 +144,6 @@ function resetTodos() {
       .querySelectorAll('.todo-list-item')
       .forEach((e) => e.parentNode.removeChild(e));
 }
-
 
 	//anropas bla. från calendar.js för att hämta antal Todos / datum (yyyy-m-d)
 	function loadTodos(selectedDate) {
