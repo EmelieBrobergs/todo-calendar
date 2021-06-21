@@ -40,7 +40,7 @@ function div_hide() {
 function addNewTodoItem(event) {
 	event.preventDefault();
 
-	var li = document.createElement('li');
+	//var li = document.createElement('li');
 	var inputValue = document.getElementById('myInput').value;
 
 	//TODO: kolla att datum är valt
@@ -51,20 +51,26 @@ function addNewTodoItem(event) {
 		storeCreatedTodos(inputValue); //TODO--Denna ska lagra todo-datan
 		renderTodos();
 	}
+	//Tömmer skrivfältet
 	document.getElementById('myInput').value = '';
-	//Create deletebutton for everylistitem
-	const span = document.createElement('span');
-	span.innerText = '\u{1F5D1}';
-	span.addEventListener('click', () => deleteTodo());
-	span.classList.add('icon-span-delete-button');
-	li.append(span);
+}
 
-	//Create editbutton for everylistitem
+//Create editbutton for everylistitem
+function createEditButton() {
 	const span2 = document.createElement('span');
 	span2.innerText = '\u{1F58B}';
 	span2.addEventListener('click', () => editTodo());
 	span2.classList.add('icon-span-edit-button');
-	li.append(span2);
+	return span2;
+}
+	
+//Create deletebutton for everylistitem
+function createDeleteButton() {
+	const span = document.createElement('span');
+	span.innerText = '\u{1F5D1}';
+	span.addEventListener('click', () => deleteTodo());
+	span.classList.add('icon-span-delete-button');
+	return span;
 }
 
 //Tömmer skrivfältet
@@ -72,17 +78,10 @@ function addNewTodoItem(event) {
 function deleteTodo(todoItem) {
 	console.log(todoItem);
 	storedTodos.splice(storedTodos.indexOf(todoItem), 1);
-	// var close = document.getElementsByClassName('icon-span-delete-button');
-	// var i;
-	// for (i = 0; i < close.length; i++) {
-	// 	close[i].onclick = function () {
-	// 		var div = this.parentElement;
-	// 		div.style.display = 'none';
-	// 	};
-	// }
 	updateLocalStorage();
 	renderTodos();
 	loadCalendar();
+
 }
 
 //TODO: ändra denna funktion så den uppdaterar rätt todo
@@ -128,21 +127,16 @@ function getTodoFromLocalStorage() {
 }
 
 function renderTodos() {
-	 resetTodos();
+	resetTodos();
+
 	storedTodos.forEach(todoItem => {
 		var li = document.createElement('li');
 		li.classList.add('todo-list-item');
 		li.innerText = todoItem.text;
 		document.getElementById('todoList').appendChild(li);
+		li.append(createEditButton());
+		li.append(createDeleteButton());
 		//TODO: Anropa funktion för att lägga till knappar
-
-		//Create deletebutton for everylistitem
-		const span = document.createElement('span');
-		span.innerText = '\u{1F5D1}';
-		span.addEventListener('click', () => deleteTodo(todoItem));
-		span.classList.add('icon-span-delete-button');
-		li.append(span);
-		
 	});
 }
 
@@ -152,8 +146,8 @@ function resetTodos() {
       .forEach((e) => e.parentNode.removeChild(e));
 }
 
-
 	//anropas bla. från calendar.js
+
 	function loadTodos(selectedDate) {
 		let tempTodos = [];
 		for (item of storedTodos) {
