@@ -7,7 +7,7 @@ function initTodo() {
 	getTodoFromLocalStorage();
 	initCalendarPicker();
 	addEventListeners();
-	// TODO: renderTodos();
+	renderTodos();
 }
 
 function addEventListeners() {
@@ -59,9 +59,9 @@ function newElement(event) {
 	if (inputValue === '') {
 		alert('You must write something!');
 	} else {
-		var t = document.createTextNode(inputValue); //flyttat ned
-		li.appendChild(t);// flyttat ned
-		document.getElementById('todoList').appendChild(li);
+		// var t = document.createTextNode(inputValue); //flyttat ned
+		// li.appendChild(t);// flyttat ned
+		// document.getElementById('todoList').appendChild(li);
 		storeCreatedTodos(inputValue); //TODO--Denna ska lagra todo-datan
 	}
 	document.getElementById('myInput').value = '';
@@ -97,14 +97,14 @@ function storeCreatedTodos(todoText) {
 }
 
 function saveTodoToLocalStorage() {
-	console.trace('Hej')
+	//console.trace('Hej')
 	var stringifyTodos = JSON.stringify(storedTodos);
 	localStorage.setItem('todos', stringifyTodos);
 }
 
 function getTodoFromLocalStorage() {
 	var stringifyTodos = localStorage.getItem('todos');
-	console.log(stringifyTodos)
+	//console.log(stringifyTodos)
 	if(!stringifyTodos) {
 		storedTodos = [];
 	}
@@ -113,6 +113,19 @@ function getTodoFromLocalStorage() {
 
 	}
 }
+
+function renderTodos() {
+	storedTodos.forEach(todoItem => {
+		var li = document.createElement('li');
+		var inputValue = document.getElementById('myInput').value;
+		var t = document.createTextNode(inputValue);
+		document.getElementById('todoList').appendChild(li);
+		//li.classList.add(storedTodos);
+		li.innerText = todoItem.text;
+		li.appendChild(t);
+	});
+}
+
 
 	//anropas bla. från calendar.js för att hämta antal Todos / datum (yyyy-m-d)
 	function loadTodos(selectedDate) {
