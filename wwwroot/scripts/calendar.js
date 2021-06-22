@@ -243,8 +243,10 @@ function addClickEventsToCalendarItems() {
     var gridItems = document.getElementsByClassName('grid-item');
     for (var gridDay of gridItems) {
         gridDay.addEventListener('click', function(event) {
-            let filteredTodos = loadTodos(new Date(year, month, this.firstChild.innerText));
+            let selectedDate = new Date(year, month, this.firstChild.innerText);
+            let filteredTodos = loadTodos(selectedDate);
             renderTodos(filteredTodos);
+            appendSelectedDateInfo(selectedDate);
         });
     }   
 }

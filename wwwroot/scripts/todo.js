@@ -102,14 +102,12 @@ function updateLocalStorage() {
 }
 
 function saveTodoToLocalStorage() {
-	//console.trace('Hej')
 	var stringifyTodos = JSON.stringify(storedTodos);
 	localStorage.setItem('todos', stringifyTodos);
 }
 
 function getTodoFromLocalStorage() {
 	var stringifyTodos = localStorage.getItem('todos');
-	//console.log(stringifyTodos)
 	if(!stringifyTodos) {
 		storedTodos = [];
 	}
@@ -155,4 +153,21 @@ function loadTodos(selectedDate) {
 		}
 	}
 	return tempTodos;
+}
+
+function appendSelectedDateInfo(selectedDate) {
+	var li = document.createElement('li');
+	li.classList.add('todo-list-item');
+	li.innerText = 'Todos för: \n' + selectedDate.toLocaleDateString();
+	document.getElementById('todoList').insertBefore(li, document.getElementById('todoList').firstChild);
+	li.append(createResetButton());
+}
+
+//Create deletebutton for everylistitem
+function createResetButton() {
+	const span = document.createElement('span');
+	span.innerText = '\u{2716}';
+	span.addEventListener('click', () => renderTodos(storedTodos));
+	span.classList.add('icon-span-delete-button');
+	return span;
 }
