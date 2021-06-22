@@ -43,7 +43,7 @@ function addNewTodoItem(event) {
 		alert('You must write something!');
 	} else {
 		storeCreatedTodos(inputValue); //TODO--Denna ska lagra todo-datan
-		renderTodos();
+		renderTodos(storedTodos);
 	}
 	//Tömmer skrivfältet
 	document.getElementById('myInput').value = '';
@@ -70,10 +70,9 @@ function createDeleteButton() {
 //Tömmer skrivfältet
 
 function deleteTodo(todoItem) {
-	console.log(todoItem);
 	storedTodos.splice(storedTodos.indexOf(todoItem), 1);
 	updateLocalStorage();
-	renderTodos();
+	renderTodos(storedTodos);
 	loadCalendar();
 
 }
@@ -116,14 +115,14 @@ function getTodoFromLocalStorage() {
 	}
 	else{
 		storedTodos = JSON.parse(stringifyTodos);
-		renderTodos();
+		renderTodos(storedTodos);
 	}
 }
 
-function renderTodos() {
+function renderTodos(todosToRender) {
 	resetTodos();
 
-	storedTodos.forEach(todoItem => {
+	todosToRender.forEach(todoItem => {
 		var li = document.createElement('li');
 		li.classList.add('todo-list-item');
 		li.innerText = todoItem.text;
@@ -139,8 +138,11 @@ function resetTodos() {
       .forEach((e) => e.parentNode.removeChild(e));
 }
 
-	//anropas bla. från calendar.js
-
+/**
+ * 
+ * @param {Date} selectedDate 
+ * @returns {Array}
+ */
 function loadTodos(selectedDate) {
 	let tempTodos = [];
 	for (item of storedTodos) {
@@ -149,14 +151,4 @@ function loadTodos(selectedDate) {
 		}
 	}
 	return tempTodos;
-}
-
-function filterTodoList(oneDate) {
-	console.log(oneDate[0].innerText);
-	//hämta valt datum
-	var filterDate = new Date(year, getMonthIndexAsString(), 1)
-
-	//filtrera listan
-
-	//new Date(1995, 11, 17)
 }
