@@ -115,6 +115,9 @@ function getTodoFromLocalStorage() {
 	}
 	else{
 		storedTodos = JSON.parse(stringifyTodos);
+		for (const todo of storedTodos) {
+			todo.date = new Date(todo.date);
+		}
 		renderTodos(storedTodos);
 	}
 }
@@ -145,6 +148,7 @@ function resetTodos() {
  */
 function loadTodos(selectedDate) {
 	let tempTodos = [];
+	console.log(storedTodos);
 	for (item of storedTodos) {
 		if (item.date.valueOf() == selectedDate.valueOf()) {
 			tempTodos.push(item);
