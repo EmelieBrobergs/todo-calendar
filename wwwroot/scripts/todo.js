@@ -4,12 +4,6 @@ var storedTodos = [];
 function initTodo() {
 	getTodoFromLocalStorage();
 	initCalendarPicker();
-	addEventListeners();
-}
-
-function addEventListeners() {
-	var createTodoButton = document.getElementById('submit');
-	createTodoButton.addEventListener('click', addNewTodoItem);
 }
 
 function initCalendarPicker() {
@@ -136,7 +130,6 @@ function renderTodos() {
 		document.getElementById('todoList').appendChild(li);
 		li.append(createEditButton());
 		li.append(createDeleteButton());
-		//TODO: Anropa funktion för att lägga till knappar
 	});
 }
 
@@ -148,12 +141,22 @@ function resetTodos() {
 
 	//anropas bla. från calendar.js
 
-	function loadTodos(selectedDate) {
-		let tempTodos = [];
-		for (item of storedTodos) {
-			if (item.date.valueOf() == selectedDate.valueOf()) {
-				tempTodos.push(item);
-			}
+function loadTodos(selectedDate) {
+	let tempTodos = [];
+	for (item of storedTodos) {
+		if (item.date.valueOf() == selectedDate.valueOf()) {
+			tempTodos.push(item);
+		}
 	}
 	return tempTodos;
+}
+
+function filterTodoList(oneDate) {
+	console.log(oneDate[0].innerText);
+	//hämta valt datum
+	var filterDate = new Date(year, getMonthIndexAsString(), 1)
+
+	//filtrera listan
+
+	//new Date(1995, 11, 17)
 }

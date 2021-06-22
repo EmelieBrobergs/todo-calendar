@@ -69,6 +69,7 @@ function loadCalendar() {
         
         //date of day
         var p = document.createElement('p');
+        p.classList.add('grid-date');
         p.innerText = day.getDate();
         div.append(p);
         
