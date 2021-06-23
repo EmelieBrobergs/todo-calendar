@@ -26,7 +26,7 @@ function loadTodayInfo() {
  * @returns {DateInfo}
  */
 function getDateInfo(date) {
-	const dateString  = date.getFullYear() + '-' + ("0" + (date.getMonth() + 1)).slice(-2) + '-' + date.getDate()//getMonthString(date);
+	const dateString  = date.getFullYear() + '-' + ("0" + (date.getMonth() + 1)).slice(-2) + '-' + date.getDate();
 	const weekdayName = getWeekdayString(date);
 
 	return { dateString, weekdayName };

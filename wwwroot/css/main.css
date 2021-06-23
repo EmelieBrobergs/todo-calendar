@@ -53,6 +53,15 @@ main {
 	color: red;
 }
 
+.todo-number {
+	color: white;
+	background-color: #2185D0;
+	border-radius: 50%;
+	min-width: 1.2rem;
+	width: fit-content;
+	text-align: center;
+}
+
 @media (max-width: 1024px) {
 	.weekday {
 		font-size: 0;

@@ -59,7 +59,8 @@ function loadCalendar() {
         //create div and adding elements
         var div = document.createElement('div');
         div.classList.add('grid-item');
-        div.classList.add('calendar-item'); //revised name off css-tag 'date'
+        div.classList.add('pointer');
+        div.classList.add('calendar-item');
 
         //redday
         if (jsonDataFromApiSholiday.dagar[daysOfMonth.indexOf(day)]['röd dag'] === 'Ja')
@@ -69,7 +70,7 @@ function loadCalendar() {
         
         //date of day
         var p = document.createElement('p');
-        p.classList.add('grid-date');
+        // p.classList.add('grid-date');
         p.innerText = day.getDate();
         div.append(p);
         

@@ -1,4 +1,3 @@
-
 var storedDate;
 var storedTodos = [];
 
@@ -7,8 +6,6 @@ function initTodo() {
 }
 
 function initCalendarPicker(initialDate) {
-
-    console.log(initialDate);
     // Calendar picker: Format date and store date info in Todo
     document.querySelector('#date_calendar').innerHTML = "";
     $('#date_calendar').calendar({
@@ -28,19 +25,14 @@ function initCalendarPicker(initialDate) {
 
 //Function to Hide Popup
 function div_hide() {
-    document.getElementById('abc').style.display = 'none';
-    //TODO: Skapa css klass
+    document.getElementById('modal').style.display = 'none';
 }
 
 //adds item to list
 function saveTodoItem(event, todoItem) {
     event.preventDefault();
 
-    //var li = document.createElement('li');
     var inputValue = document.getElementById('myInput').value;
-
-    //TODO: kolla att datum är valt
-    console.log(event, todoItem);
 
 	if (inputValue === '') {
 		alert('You must write something!');
@@ -56,19 +48,18 @@ function saveTodoItem(event, todoItem) {
     loadCalendar();
     saveTodoToLocalStorage();
 
-	//Tömmer skrivfältet
+	//Erase input field
 	document.getElementById('myInput').value = '';
-    // todo: dölj modalen
 }
 
-//Create editbutton for everylistitem
+//Create editbutton for every listitem
 function createEditButton(todoItem) {
-    const span2 = document.createElement('button');
-    span2.textContent = '\u{1F58B}';
-    //span2.innerText = '\u{1F58B}';
-    span2.addEventListener('click', (e) => showEditTodoForm(e, todoItem));
-    span2.classList.add('icon-span-edit-button');
-    return span2;
+    const span = document.createElement('button');
+    span.textContent = '\u{1F58B}';
+    span.addEventListener('click', (e) => showEditTodoForm(e, todoItem));
+    span.classList.add('pointer');
+    span.classList.add('icon-span-edit-button');
+    return span;
 }
 
 //Create deletebutton for everylistitem
@@ -77,19 +68,11 @@ function createDeleteButton(todoItem) {
     span.innerText = '\u{1F5D1}';
     span.addEventListener('click', () => deleteTodo(todoItem));
     span.classList.add('icon-span-delete-button');
+    span.classList.add('pointer')
     return span;
 }
 
-function createSaveButton() {
-    const span3 = document.createElement('button');
-    span3.textContent = 'save';
-    span3.addEventListener('click', () => saveTodoToLocalStorage());
-    span3.classList.add('icon-span-edit-button');
-    return span3;
-}
-
-//Tömmer skrivfältet
-
+//Deletes todo
 function deleteTodo(todoItem) {
 	storedTodos.splice(storedTodos.indexOf(todoItem), 1);
 	saveTodoToLocalStorage();
@@ -97,10 +80,9 @@ function deleteTodo(todoItem) {
 	loadCalendar();
 }
 
-//TODO: ändra denna funktion så den uppdaterar rätt todo
-//i arrayen för nu lägger den bara till nya toditems
+//Opens a popup to edit a todo
 function showEditTodoForm(event, todoItem) {
-    const modal = document.getElementById('abc')
+    const modal = document.getElementById('modal')
     modal.style.display = 'block';
     
     // Fill in editing todo values
@@ -116,17 +98,19 @@ function showEditTodoForm(event, todoItem) {
     saveTodoButton.onclick = (e) => saveTodoItem(e, todoItem);
 }
 
-// Lagra todos
+// Store TODOs
 function storeCreatedTodos(todoText) {
     var todoItem = { date: storedDate, text: todoText };
     storedTodos.push(todoItem);
 }
 
+// Save to local Storage
 function saveTodoToLocalStorage() {
     var stringifyTodos = JSON.stringify(storedTodos);
     localStorage.setItem('todos', stringifyTodos);
 }
 
+// Get from locale Storage
 function getTodoFromLocalStorage() {
     var stringifyTodos = localStorage.getItem('todos');
     if (!stringifyTodos) {
@@ -144,6 +128,7 @@ function getTodoFromLocalStorage() {
     }
 }
 
+// Render the todoItems
 function renderTodos(todosToRender) {
     resetTodos();
 
@@ -151,8 +136,7 @@ function renderTodos(todosToRender) {
         var li = document.createElement('li');
         var span = document.createElement('span');
         li.classList.add('todo-list-item');
-        //li.innerText = todoItem.text;
-        li.appendChild(span).innerText = todoItem.text;  //NOTE: problem för annan kod
+        li.appendChild(span).innerText = todoItem.text;
         document.getElementById('todoList').appendChild(li);
         li.append(createEditButton(todoItem));
         li.append(createDeleteButton(todoItem));
@@ -187,7 +171,7 @@ function appendSelectedDateInfo(selectedDate) {
 	li.append(createResetButton());
 }
 
-//Create deletebutton for everylistitem
+//Create deletebutton for every listitem
 function createResetButton() {
 	const span = document.createElement('span');
 	span.innerText = '\u{2716}';
