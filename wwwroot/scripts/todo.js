@@ -3,14 +3,8 @@ var storedDate;
 var storedTodos = [];
 
 function initTodo() {
-    getTodoFromLocalStorage();
-    initCalendarPicker();
-    addEventListeners();
-}
-
-function addEventListeners() {
-    var createTodoButton = document.getElementById('submit');
-    createTodoButton.addEventListener('click', addNewTodoItem);
+	getTodoFromLocalStorage();
+	initCalendarPicker();
 }
 
 function initCalendarPicker() {
@@ -46,14 +40,15 @@ function addNewTodoItem(event) {
 
     //TODO: kolla att datum är valt
 
-    if (inputValue === '') {
-        alert('You must write something!');
-    } else {
-        storeCreatedTodos(inputValue); //TODO--Denna ska lagra todo-datan
-        renderTodos();
-    }
-    //Tömmer skrivfältet
-    document.getElementById('myInput').value = '';
+
+	if (inputValue === '') {
+		alert('You must write something!');
+	} else {
+		storeCreatedTodos(inputValue); //TODO--Denna ska lagra todo-datan
+		renderTodos(storedTodos);
+	}
+	//Tömmer skrivfältet
+	document.getElementById('myInput').value = '';
 }
 
 //Create editbutton for everylistitem
@@ -86,11 +81,10 @@ function createSaveButton() {
 //Tömmer skrivfältet
 
 function deleteTodo(todoItem) {
-    console.log(todoItem);
-    storedTodos.splice(storedTodos.indexOf(todoItem), 1);
-    updateLocalStorage();
-    renderTodos();
-    loadCalendar();
+	storedTodos.splice(storedTodos.indexOf(todoItem), 1);
+	updateLocalStorage();
+	renderTodos(storedTodos);
+	loadCalendar();
 }
 
 //TODO: ändra denna funktion så den uppdaterar rätt todo
@@ -153,34 +147,35 @@ function updateLocalStorage() {
 }
 
 function saveTodoToLocalStorage() {
-    //console.trace('Hej')
     var stringifyTodos = JSON.stringify(storedTodos);
     localStorage.setItem('todos', stringifyTodos);
 }
 
 function getTodoFromLocalStorage() {
     var stringifyTodos = localStorage.getItem('todos');
-    //console.log(stringifyTodos)
     if (!stringifyTodos) {
         storedTodos = [];
     } else {
         storedTodos = JSON.parse(stringifyTodos);
-        renderTodos();
+        for (const todo of storedTodos) {
+        todo.date = new Date(todo.date);
+        }
+    renderTodos(storedTodos);
     }
 }
 
-function renderTodos() {
+function renderTodos(todosToRender) {
     resetTodos();
 
-    storedTodos.forEach((todoItem) => {
+    todosToRender.forEach((todoItem) => {
         var li = document.createElement('li');
         var span = document.createElement('span');
         li.classList.add('todo-list-item');
-        li.appendChild(span).innerText = todoItem.text;
+        //li.innerText = todoItem.text;
+        li.appendChild(span).innerText = todoItem.text;  //NOTE: problem för annan kod
         document.getElementById('todoList').appendChild(li);
         li.append(createEditButton());
         li.append(createDeleteButton());
-        //TODO: Anropa funktion för att lägga till knappar
     });
 }
 
@@ -188,14 +183,35 @@ function resetTodos() {
     document.querySelectorAll('.todo-list-item').forEach((e) => e.parentNode.removeChild(e));
 }
 
-//anropas bla. från calendar.js
 
+/**
+ * 
+ * @param {Date} selectedDate 
+ * @returns {Array}
+ */
 function loadTodos(selectedDate) {
-    let tempTodos = [];
-    for (item of storedTodos) {
-        if (item.date.valueOf() == selectedDate.valueOf()) {
-            tempTodos.push(item);
-        }
-    }
-    return tempTodos;
+	let tempTodos = [];
+	for (item of storedTodos) {
+		if (item.date.valueOf() == selectedDate.valueOf()) {
+			tempTodos.push(item);
+		}
+	}
+	return tempTodos;
+}
+
+function appendSelectedDateInfo(selectedDate) {
+	var li = document.createElement('li');
+	li.classList.add('todo-list-item');
+	li.innerText = 'Todos för: \n' + selectedDate.toLocaleDateString();
+	document.getElementById('todoList').insertBefore(li, document.getElementById('todoList').firstChild);
+	li.append(createResetButton());
+}
+
+//Create deletebutton for everylistitem
+function createResetButton() {
+	const span = document.createElement('span');
+	span.innerText = '\u{2716}';
+	span.addEventListener('click', () => renderTodos(storedTodos));
+	span.classList.add('icon-span-delete-button');
+	return span;
 }

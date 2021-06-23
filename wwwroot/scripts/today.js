@@ -63,5 +63,5 @@ function renderClock() {
 	timeH5.innerText = time[0];
 }
 
-//TODO: Plaering av denna? 
+
 /** @typedef { { dateString: String, weekdayName: String, timeStamp: String } } DateInfo */

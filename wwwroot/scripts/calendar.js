@@ -69,6 +69,7 @@ function loadCalendar() {
         
         //date of day
         var p = document.createElement('p');
+        p.classList.add('grid-date');
         p.innerText = day.getDate();
         div.append(p);
         
@@ -86,6 +87,7 @@ function loadCalendar() {
         //adding div to grid
         gridElement.append(div); 
     } 
+    addClickEventsToCalendarItems();
 }
 
 function resetCalendar() {
@@ -235,4 +237,16 @@ function getMonthName() {
 		case 11:
 			return 'December';
 	}
+}
+
+function addClickEventsToCalendarItems() {
+    var gridItems = document.getElementsByClassName('grid-item');
+    for (var gridDay of gridItems) {
+        gridDay.addEventListener('click', function(event) {
+            let selectedDate = new Date(year, month, this.firstChild.innerText);
+            let filteredTodos = loadTodos(selectedDate);
+            renderTodos(filteredTodos);
+            appendSelectedDateInfo(selectedDate);
+        });
+    }   
 }
