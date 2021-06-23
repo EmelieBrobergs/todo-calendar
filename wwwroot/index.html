@@ -19,6 +19,8 @@
     <script src="./scripts/today.js"></script>
     <script src="./scripts/main.js"></script>
     <script src="./scripts/calendar.js"></script>
+
+
     <title>Calendar</title>
 </head>
 
@@ -26,24 +28,24 @@
     <header class="flex row justify-center align-center">
         <h1>Kalender</h1>
     </header>
+    <!-- TODO: Information om Today -->
     <div class="flex grow grid">
         <aside class="flex column align-center padding8">
-            <div class="full-width flex align-center column">
+            <div class="welcome-container full-width">
+                <!-- NOTE: removed class month-carousel, used Base.css classes -->
                 <div class="flex align-center full-width column">
                     <h5 id="year"></h5>
                     <div class="flex full-width space-between row">
-                        <!--- TODO: Ta bort jskod härifrån-->
                         <button class="arrow-button" onclick="prevMonth()">
                             <i class="arrow left"></i>
                         </button>
                         <h2 id="month-name"></h2>
-                         <!--- TODO: Ta bort jskod härifrån-->
                         <button class="arrow-button" onclick="nextMonth()">
                             <i class="arrow right"></i>
                         </button>
                     </div>
                 </div>
-                <hr class="line full-width">
+                <hr class="full-width">
                 <div class="flex column">
                     <div class="flex row">
                         <h5 id="weekday-name" class="padding-right"></h5>
@@ -55,32 +57,37 @@
             </div>
 
             <div class="flex row align-center button-box">
+
                 <ul id="todoList">
                 </ul>
+
             </div>
 
-            <div id="create-todo-form">
+
+
+            <div id="abc">
                 <!-- Popup Div Starts Here -->
-                <div id="create-todo-placement">
+                <div id="popupContact">
                     <!-- Form -->
                     <form action="#" id="form" method="post" name="form">
-                        <!--TODO: Ta bort js-kod-->
                         <img id="close" src="./img/img3.png" onclick="div_hide()">
+                        <h2>Lägg till ToDo</h2>
+                        <hr>
                         <input type="text" id="myInput" placeholder="Ange todo" />
                         <div class="ui calendar" id="date_calendar">
                         </div>
-                        <button id="submit">Save</button>
-
+                        <!-- <a href="javascript:%20newElement()" id="submit">Lägg till</a> //ingen js kod här. Gör en vanlig knapp. -->
+                        <button id="submit">Save</button> //ingen js kod här. Gör en vanlig knapp.
                     </form>
                 </div>
             </div>
             <!-- Popup Div Ends Here -->
-            
             <!-- Display Popup Button -->
             <button class="ui primary button" id="popup" onclick="showEditTodoForm()">Lägg till ToDo</button>
         </aside>
 
         <main id="grid" class="grid-container">
+
             <div class="weekday">Måndag</div>
             <div class="weekday">Tisdag</div>
             <div class="weekday">Onsdag</div>
@@ -88,6 +95,9 @@
             <div class="weekday">Fredag</div>
             <div class="weekday">Lördag</div>
             <div class="weekday">Söndag</div>
+
+
+            <!-- TODO: Få in Todo-siffran -->
         </main>
     </div>
 </body>
