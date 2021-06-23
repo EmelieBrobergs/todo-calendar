@@ -54,8 +54,7 @@ function addNewTodoItem(event) {
 //Create editbutton for everylistitem
 function createEditButton() {
     const span2 = document.createElement('button');
-    span2.textContent = '\u{1F58B}';
-    //span2.innerText = '\u{1F58B}';
+    span2.innerText='\u{1F58B}';
     span2.addEventListener('click', (e) => editTodo(e));
     span2.classList.add('icon-span-edit-button');
     return span2;
@@ -134,6 +133,10 @@ function editTodo(event) {
 
 // Lagra todos
 function storeCreatedTodos(todoText) {
+    //if date not selected, default to date Today
+	if (storedDate == null) {
+		storedDate = new Date().setHours(0, 0, 0, 0);
+	}
     var todoItem = { date: storedDate, text: todoText };
     storedTodos.push(todoItem);
     resetCalendar();
@@ -158,7 +161,9 @@ function getTodoFromLocalStorage() {
     } else {
         storedTodos = JSON.parse(stringifyTodos);
         for (const todo of storedTodos) {
-        todo.date = new Date(todo.date);
+        let todoUtcDate = new Date(todo.date);
+		let todoLocaleDateString = todoUtcDate.toLocaleDateString();
+		todo.date = new Date(todoLocaleDateString).setHours(0, 0, 0, 0);
         }
     renderTodos(storedTodos);
     }
