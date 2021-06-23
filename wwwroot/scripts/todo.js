@@ -22,12 +22,12 @@ function initCalendarPicker() {
 }
 //Function To Display Popup
 function div_show() {
-    document.getElementById('abc').style.display = 'block';
+    document.getElementById('create-todo-form').style.display = 'block';
     //TODO: Skapa css klass för block
 }
 //Function to Hide Popup
 function div_hide() {
-    document.getElementById('abc').style.display = 'none';
+    document.getElementById('create-todo-form').style.display = 'none';
     //TODO: Skapa css klass
 }
 
