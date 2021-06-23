@@ -7,6 +7,8 @@ function initTodo() {
 }
 
 function initCalendarPicker(initialDate) {
+
+    console.log(initialDate);
     // Calendar picker: Format date and store date info in Todo
     document.querySelector('#date_calendar').innerHTML = "";
     $('#date_calendar').calendar({
@@ -116,10 +118,6 @@ function showEditTodoForm(event, todoItem) {
 
 // Lagra todos
 function storeCreatedTodos(todoText) {
-    //if date not selected, default to date Today
-	if (storedDate == null) {
-		storedDate = new Date().setHours(0, 0, 0, 0);
-	}
     var todoItem = { date: storedDate, text: todoText };
     storedTodos.push(todoItem);
 }
@@ -138,7 +136,9 @@ function getTodoFromLocalStorage() {
         for (const todo of storedTodos) {
         let todoUtcDate = new Date(todo.date);
 		let todoLocaleDateString = todoUtcDate.toLocaleDateString();
-		todo.date = new Date(todoLocaleDateString).setHours(0, 0, 0, 0);
+        var date = new Date(todoLocaleDateString);
+        date.setHours(0, 0, 0, 0);
+        todo.date = date;
         }
     renderTodos(storedTodos);
     }
