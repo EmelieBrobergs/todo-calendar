@@ -13,6 +13,7 @@
 
     <script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../node_modules/fomantic-ui-css/semantic.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <script src="../node_modules/fomantic-ui-css/semantic.js"></script>
     <script src="./scripts/todo.js"></script>
     <script src="./scripts/today.js"></script>
@@ -68,16 +69,15 @@
                         <input type="text" id="myInput" placeholder="Ange todo" />
                         <div class="ui calendar" id="date_calendar">
                         </div>
-                        <p>*Om inget datum väljs blir det dagens datum</p>
-                        <button id="submit">Lägg till Todo *</button>
+                        <button id="submit">Save</button>
+
                     </form>
                 </div>
             </div>
             <!-- Popup Div Ends Here -->
             
             <!-- Display Popup Button -->
-            <!--TODO: Ta bort js-kod-->
-            <button class="ui primary button" id="popup" onclick="div_show()">Lägg till ToDo</button>
+            <button class="ui primary button" id="popup" onclick="showEditTodoForm()">Lägg till ToDo</button>
         </aside>
 
         <main id="grid" class="grid-container">
