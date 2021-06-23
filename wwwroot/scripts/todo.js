@@ -4,12 +4,6 @@ var storedTodos = [];
 function initTodo() {
 	getTodoFromLocalStorage();
 	initCalendarPicker();
-	addEventListeners();
-}
-
-function addEventListeners() {
-	var createTodoButton = document.getElementById('submit');
-	createTodoButton.addEventListener('click', addNewTodoItem);
 }
 
 function initCalendarPicker() {
@@ -49,7 +43,7 @@ function addNewTodoItem(event) {
 		alert('You must write something!');
 	} else {
 		storeCreatedTodos(inputValue); //TODO--Denna ska lagra todo-datan
-		renderTodos();
+		renderTodos(storedTodos);
 	}
 	//Tömmer skrivfältet
 	document.getElementById('myInput').value = '';
@@ -76,10 +70,9 @@ function createDeleteButton() {
 //Tömmer skrivfältet
 
 function deleteTodo(todoItem) {
-	console.log(todoItem);
 	storedTodos.splice(storedTodos.indexOf(todoItem), 1);
 	updateLocalStorage();
-	renderTodos();
+	renderTodos(storedTodos);
 	loadCalendar();
 
 }
@@ -109,34 +102,34 @@ function updateLocalStorage() {
 }
 
 function saveTodoToLocalStorage() {
-	//console.trace('Hej')
 	var stringifyTodos = JSON.stringify(storedTodos);
 	localStorage.setItem('todos', stringifyTodos);
 }
 
 function getTodoFromLocalStorage() {
 	var stringifyTodos = localStorage.getItem('todos');
-	//console.log(stringifyTodos)
 	if(!stringifyTodos) {
 		storedTodos = [];
 	}
 	else{
 		storedTodos = JSON.parse(stringifyTodos);
-		renderTodos();
+		for (const todo of storedTodos) {
+			todo.date = new Date(todo.date);
+		}
+		renderTodos(storedTodos);
 	}
 }
 
-function renderTodos() {
+function renderTodos(todosToRender) {
 	resetTodos();
 
-	storedTodos.forEach(todoItem => {
+	todosToRender.forEach(todoItem => {
 		var li = document.createElement('li');
 		li.classList.add('todo-list-item');
 		li.innerText = todoItem.text;
 		document.getElementById('todoList').appendChild(li);
 		li.append(createEditButton());
 		li.append(createDeleteButton());
-		//TODO: Anropa funktion för att lägga till knappar
 	});
 }
 
@@ -146,14 +139,35 @@ function resetTodos() {
       .forEach((e) => e.parentNode.removeChild(e));
 }
 
-	//anropas bla. från calendar.js
-
-	function loadTodos(selectedDate) {
-		let tempTodos = [];
-		for (item of storedTodos) {
-			if (item.date.valueOf() == selectedDate.valueOf()) {
-				tempTodos.push(item);
-			}
+/**
+ * 
+ * @param {Date} selectedDate 
+ * @returns {Array}
+ */
+function loadTodos(selectedDate) {
+	let tempTodos = [];
+	console.log(storedTodos);
+	for (item of storedTodos) {
+		if (item.date.valueOf() == selectedDate.valueOf()) {
+			tempTodos.push(item);
+		}
 	}
 	return tempTodos;
+}
+
+function appendSelectedDateInfo(selectedDate) {
+	var li = document.createElement('li');
+	li.classList.add('todo-list-item');
+	li.innerText = 'Todos för: \n' + selectedDate.toLocaleDateString();
+	document.getElementById('todoList').insertBefore(li, document.getElementById('todoList').firstChild);
+	li.append(createResetButton());
+}
+
+//Create deletebutton for everylistitem
+function createResetButton() {
+	const span = document.createElement('span');
+	span.innerText = '\u{2716}';
+	span.addEventListener('click', () => renderTodos(storedTodos));
+	span.classList.add('icon-span-delete-button');
+	return span;
 }
