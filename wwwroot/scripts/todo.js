@@ -23,9 +23,10 @@ function initCalendarPicker(initialDate) {
         }
     });
 }
+
 //Function to Hide Popup
 function div_hide() {
-    document.getElementById('create-todo-form').style.display = 'none';
+    document.getElementById('abc').style.display = 'none';
     //TODO: Skapa css klass
 }
 
