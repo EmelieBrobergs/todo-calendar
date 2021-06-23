@@ -7,10 +7,4 @@ async function main () {
     initTodo();
     await initCalendar();
     initToday();
-    addEventListeners();
-}
-
-function addEventListeners() {
-	var createTodoButton = document.getElementById('submit');
-	createTodoButton.addEventListener('click', addNewTodoItem);
 }
