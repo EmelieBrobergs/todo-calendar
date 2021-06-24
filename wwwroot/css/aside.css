@@ -148,11 +148,23 @@ li {
 
 .right {
 	transform: rotate(-45deg);
-	-webkit-transform: rotate(-45deg);
+	-webkit-transform: rotate(-5deg);
 	cursor: pointer;
 }
 
 .left {
+	transform: rotate(45deg);
+	-webkit-transform: rotate(5deg);
+	cursor: pointer;
+}
+
+.nextMonth-arrow {
+	transform: rotate(-45deg);
+	-webkit-transform: rotate(-45deg);
+	cursor: pointer;
+}
+
+.prevMonth-arrow {
 	transform: rotate(135deg);
 	-webkit-transform: rotate(135deg);
 	cursor: pointer;
