@@ -55,7 +55,7 @@ function saveTodoItem(event, todoItem) {
 //Create editbutton for every listitem
 function createEditButton(todoItem) {
     const span = document.createElement('button');
-    span.textContent = '\u{1F58B}';
+    span.innerHTML = '<i class="far fa-edit padding8"></i>'
     span.addEventListener('click', (e) => showEditTodoForm(e, todoItem));
     span.classList.add('pointer');
     span.classList.add('icon-span-edit-button');
@@ -65,7 +65,7 @@ function createEditButton(todoItem) {
 //Create deletebutton for everylistitem
 function createDeleteButton(todoItem) {
     const span = document.createElement('button');
-    span.innerText = '\u{1F5D1}';
+    span.innerHTML= '<i class="far fa-trash-alt padding8"></i>';
     span.addEventListener('click', () => deleteTodo(todoItem));
     span.classList.add('icon-span-delete-button');
     span.classList.add('pointer')
@@ -174,8 +174,9 @@ function appendSelectedDateInfo(selectedDate) {
 //Create deletebutton for every listitem
 function createResetButton() {
 	const span = document.createElement('span');
-	span.innerText = '\u{2716}';
+    span.innerHTML = '<i class="far fa-window-close padding8"></i>';
 	span.addEventListener('click', () => renderTodos(storedTodos));
 	span.classList.add('icon-span-delete-button');
+    span.classList.add('pointer');
 	return span;
 }
