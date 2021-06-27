@@ -178,13 +178,15 @@ li {
 .icon-span-delete-button {
 	border: none;
 	background-color: #71c9ce;
-	cursor: pointer;
-
+	color: black;
+	padding: 0;
 }
 
 .icon-span-edit-button {
 	border: none;
 	background-color: #71c9ce;
+	color: black;
+	padding: 0;
 }
 
 @media (max-width: 768px) {
